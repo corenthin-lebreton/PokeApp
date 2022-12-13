@@ -25,21 +25,42 @@ const Login = () => {
     setConfirmPassword(e.target.value);
   };
 
+  //login verification and rediction to home page
+
+  // const loginVerication = () => {
+  //   const data = {
+  //     username: username,
+  //     password: password,
+  //   };
+  //   axios
+  //     .post("http://localhost:3000/api/login", data)
+  //     .then((res) => {
+  //       console.log(res);
+  //       console.log(res.data);
+  //       localStorage.setItem("token", res.data.token);
+  //       window.location.href = "/home";
+  //     })
+  //     .catch((res) => {
+  //       setError(res.response.data.message);
+  //     });
+  // };
+
   const sendDataToApi = () => {
     const data = {
       username: username,
       password: password,
       confirmPassword: confirmPassword,
     };
-    try {
-      axios.post("http://localhost:3000/api/register", data).then((res) => {
+    axios
+      .post("http://localhost:3000/api/register", data)
+      .then((res) => {
         console.log(res);
         console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+      })
+      .catch((res) => {
+        setError(res.response.data.message);
       });
-    } catch (error) {
-      //get error message from api
-      setError(error.response.data.message);
-    }
   };
 
   return (
@@ -65,16 +86,6 @@ const Login = () => {
                 placeholder="mot de passe"
                 className="form-fields"
                 onChange={handlePassword}
-                required
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3 test">
-              <Form.Control
-                type="password"
-                placeholder="confirmer mot de passe"
-                className="form-fields"
-                onChange={handleConfirmPassword}
                 required
               />
             </Form.Group>
