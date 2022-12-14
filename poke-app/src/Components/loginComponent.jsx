@@ -19,8 +19,6 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  //login verification and rediction to home page
-
   const loginVerication = () => {
     const data = {
       username: username,
