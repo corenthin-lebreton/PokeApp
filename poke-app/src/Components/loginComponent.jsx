@@ -65,7 +65,7 @@ const Login = () => {
                 required
               />
             </Form.Group>
-            <Button variant="primary" onClick={sendDataToApi}>
+            <Button variant="primary" onClick={loginVerication}>
               Connexion
             </Button>
             {error ? <p className="error">{error}</p> : null}

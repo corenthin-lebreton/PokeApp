@@ -58,6 +58,7 @@ const Register = () => {
         console.log(res);
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
+        window.location.href = "/login";
       })
       .catch((res) => {
         setError(res.response.data.message);
@@ -66,12 +67,12 @@ const Register = () => {
 
   return (
     <div>
-      <img src={image} alt="logo" className="logo-login" />
+      <img src={image} alt="logo" className="logo-register" />
 
-      <div className="login-container">
-        <h1 className="login-title">Connexion</h1>
-        <div className="login">
-          <Form className="form-login">
+      <div className="register-container">
+        <h1 className="register-title">Créez un compte</h1>
+        <div className="register">
+          <Form className="form-register">
             <Form.Group className="mb-3 test">
               <Form.Control
                 className="form-fields"
