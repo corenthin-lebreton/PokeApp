@@ -12,11 +12,13 @@ const Login = () => {
   const handleUsername = (e) => {
     e.preventDefault();
     setUsername(e.target.value);
+    console.log(username)
   };
 
   const handlePassword = (e) => {
     e.preventDefault();
     setPassword(e.target.value);
+    console.log(password)
   };
 
   const loginVerication = () => {
@@ -25,11 +27,10 @@ const Login = () => {
       password: password,
     };
     axios
-      .post("http://localhost:3000/api/login", data)
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        localStorage.setItem("token", res.data.token);
+    .post("http://localhost:3000/api/login", data)
+    .then((res) => {
+      console.log("ok")
+      localStorage.setItem("token", res.data.token);
         window.location.href = "/home";
       })
       .catch((res) => {
