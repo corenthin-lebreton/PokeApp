@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import PokemonComponent from "./pokemonComponent";
+import { Container, Col, Row } from "react-bootstrap";
 import image from "../assets/logo.png";
 import pokedex from "../assets/Pokedex.png"
 import pikachu from "../assets/pikachu.png"
@@ -44,11 +45,14 @@ const Home = () => {
   }, [url.current]);
 
   const pokemonCardDisplay = pokemon.map((pokemon, i) => {
-    return (
-      <div key={"key: " + pokemon.url}>
-        <PokemonComponent pokemon={pokemon} />
-      </div>
-    );
+
+return (
+
+  <Col className="col-sm" key={"key: " + pokemon.url}>
+    <PokemonComponent pokemon={pokemon} />
+  </Col>
+
+);
   });
 
   return (
@@ -69,10 +73,15 @@ const Home = () => {
           </Form>
     </Navbar>
       </header>
-      {pokemonCardDisplay}
 
-      {url.previous ? <button onClick={previous}>Previous</button> : <></>}
-      {url.next ? <button onClick={next}>Next</button> : <></>}
+<Container>
+  <Row>
+    {pokemonCardDisplay}
+  </Row>
+</Container>
+
+      {url.previous ? <Button variant="danger" onClick={previous}>Previous</Button> : <></>}
+      {url.next ? <Button variant="danger" onClick={next}>Next</Button> : <></>}
     </>
   );
 };
