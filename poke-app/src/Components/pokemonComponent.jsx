@@ -10,28 +10,28 @@ const PokemonComponent = ({ pokemon }) => {
     axios
       .get(pokemon.url)
       .then((res) => {
-        console.log(res.data);
         setPokemonInfo(res.data);
       })
       .catch((res) => {
-        console.log(res);
         setError(res.response.data.message);
       });
   }, [pokemon]);
 
   return (
-
-    <div class="pokemon-card-container">
-
-      <div class="pokemon-card">
-        <div class="background">
-          <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonInfo?.id}.png`} class="image"></img>
+    <div className="pokemon-card-container">
+      <div className="pokemon-card">
+        <div className="background">
+          <img
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonInfo?.id}.png`}
+            className="image"></img>
         </div>
 
-        <div class="content">
-          <h1 class="pokemon-name">{pokemon.name}</h1>
-          <span class="pokemon-type">{pokemonInfo?.types.map((types) => types.type.name)}</span>
-          <div class="pokemon-stats">
+        <div className="content">
+          <h1 className="pokemon-name">{pokemon.name}</h1>
+          <span className="pokemon-type">
+            {pokemonInfo?.types.map((types) => types.type.name)}
+          </span>
+          <div className="pokemon-stats">
             <p>Power : </p>
             <p>Damage :</p>
             <p>Attack: </p>
@@ -40,27 +40,27 @@ const PokemonComponent = ({ pokemon }) => {
           </div>
           <Button variant="primary">Ajouter au pokédex</Button>
 
-          <h1 class="pokemon-logo">Pokemon Cards</h1>
+          <h1 className="pokemon-logo">Pokemon Cards</h1>
         </div>
       </div>
     </div>
 
-      // <Card style={{width: "15rem", height:"28rem"}}>
-      //   {pokemonInfo && (
-      // <Card.Img
-      //   variant="top"
-      //   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonInfo?.id}.png`}
-      //     />
-      //   )}
-      //   <Card.Body>
-      //     <Card.Title>{pokemon.name}</Card.Title>
-      //     <Card.Text>{pokemonInfo?.base_experience}</Card.Text>
-      //   <Card.Text>
-      //     {pokemonInfo?.types.map((types) => types.type.name)}
-      //   </Card.Text>
-          
-      //   </Card.Body>
-      // </Card>
+    // <Card style={{width: "15rem", height:"28rem"}}>
+    //   {pokemonInfo && (
+    // <Card.Img
+    //   variant="top"
+    //   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonInfo?.id}.png`}
+    //     />
+    //   )}
+    //   <Card.Body>
+    //     <Card.Title>{pokemon.name}</Card.Title>
+    //     <Card.Text>{pokemonInfo?.base_experience}</Card.Text>
+    //   <Card.Text>
+    //     {pokemonInfo?.types.map((types) => types.type.name)}
+    //   </Card.Text>
+
+    //   </Card.Body>
+    // </Card>
   );
 };
 

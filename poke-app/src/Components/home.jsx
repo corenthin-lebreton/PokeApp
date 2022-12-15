@@ -1,87 +1,81 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import PokemonComponent from "./pokemonComponent";
-import { Container, Col, Row } from "react-bootstrap";
-import image from "../assets/logo.png";
-import pokedex from "../assets/Pokedex.png"
-import pikachu from "../assets/pikachu.png"
 import "../styles/homeStyle.scss";
-import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
+import Header from "./header";
 
 const Home = () => {
   const [error, setError] = useState("");
   const [pokemon, setPokemon] = useState([]);
-  const [url, setUrl] = useState({
-    current: "https://pokeapi.co/api/v2/pokemon/",
-    next: null,
-    previous: null,
-  });
+  const [allPokemon, setAllPokemon] = useState([]);
+  const [inputSearch, setInputSearch] = useState("");
+
+  const [pages, setPages] = useState(0);
 
   const next = () => {
-    setUrl({ current: url.next, next: null, previous: url.current });
+    setPages(pages + 1);
   };
 
   const previous = () => {
-    setUrl({ current: url.previous, next: url.current, previous: null });
+    setPages(pages - 1);
   };
 
   useEffect(() => {
     axios
-      .get(url.current)
+      .get("https://pokeapi.co/api/v2/pokemon?limit=10000")
       .then((res) => {
-        setPokemon(res.data.results);
-        setUrl({
-          current: url.current,
-          next: res.data.next,
-          previous: res.data.previous,
-        });
+        setAllPokemon(res.data.results);
       })
       .catch((res) => {
-        console.log(res);
         setError(res.response.data.message);
       });
-  }, [url.current]);
+  }, []);
+
+  useEffect(() => {
+    if (inputSearch !== "") {
+      setPages(0);
+      setPokemon(
+        allPokemon
+          .filter((pokemon) =>
+            pokemon.name.toLowerCase().includes(inputSearch.toLowerCase())
+          )
+          .slice(pages * 20, pages * 20 + 20)
+      );
+    } else {
+      setPokemon(allPokemon.slice(pages * 20, pages * 20 + 20));
+    }
+  }, [pages, allPokemon, inputSearch]);
 
   const pokemonCardDisplay = pokemon.map((pokemon, i) => {
-
-return (
-
-  <Col className="col-sm" key={"key: " + pokemon.url}>
-    <PokemonComponent pokemon={pokemon} />
-  </Col>
-
-);
+    return (
+      <Col className="col-sm" key={"key:" + pokemon.url}>
+        <PokemonComponent pokemon={pokemon} />
+      </Col>
+    );
   });
 
   return (
     <>
-      <header className="header">
-        <img src={image} alt="logo" className="logo-home" ></img>
-        <a href="/pokedex"><img src={pokedex} alt="pokedex" className="image-pokedex" onClick="/pokedex" ></img></a>
-        <a href="/home"><img src={pikachu} alt="liste-pokemon" className="image-pikachu" onClick="/home"></img></a>
-        <Navbar bg="none" expand="lg" className="navbar">
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button className="btn btn-warning">Search</Button>
-          </Form>
-    </Navbar>
-      </header>
+      <Header setInputSearch={setInputSearch} />
+      <Container>
+        <Row>{pokemonCardDisplay}</Row>
+      </Container>
 
-<Container>
-  <Row>
-    {pokemonCardDisplay}
-  </Row>
-</Container>
-
-      {url.previous ? <Button variant="danger" onClick={previous}>Previous</Button> : <></>}
-      {url.next ? <Button variant="danger" onClick={next}>Next</Button> : <></>}
+      {pages > 0 ? (
+        <Button variant="danger" onClick={previous}>
+          Previous
+        </Button>
+      ) : (
+        <></>
+      )}
+      {pokemon.length === 20 ? (
+        <Button variant="danger" onClick={next}>
+          Next
+        </Button>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
