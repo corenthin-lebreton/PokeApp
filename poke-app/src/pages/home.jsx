@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import PokemonComponent from "./pokemonComponent";
+import PokemonComponent from "../components/pokemonComponent";
 import "../styles/homeStyle.scss";
-import Header from "./header";
+import Header from "../components/header";
 
 const Home = () => {
   const [error, setError] = useState("");

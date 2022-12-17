@@ -1,15 +1,25 @@
 import React, { useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import Home from "./Components/home";
-import Login from "./Components/loginComponent";
-import Register from "./Components/registerComponent";
-import Pokedex from "./Components/pokedex";
+import Home from "./home";
+import Login from "../components/loginComponent";
+import Register from "../components/registerComponent";
+import Pokedex from "./pokedex";
 function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/register");
+    }
+
+    //check if token is already in localstorage only if we are on login or register page
+    if (
+      window.location.pathname === "/login" ||
+      window.location.pathname === "/register"
+    ) {
+      if (localStorage.getItem("token")) {
+        navigate("/home");
+      }
     }
   }, []);
 

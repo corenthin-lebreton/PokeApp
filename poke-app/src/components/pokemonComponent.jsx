@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Card, Container, Col, Row } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import "../styles/pokemonStyle.scss";
 
 const PokemonComponent = ({ pokemon }) => {
@@ -54,6 +54,7 @@ const PokemonComponent = ({ pokemon }) => {
           <h1 className="pokemon-logo">Pokemon Cards</h1>
         </div>
       </div>
+      <div>{error && <p>{error}</p>}</div>
     </div>
   );
 };

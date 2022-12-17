@@ -7,6 +7,11 @@ import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 
 const Header = ({ setInputSearch }) => {
+  const logOutUser = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
   return (
     <div>
       <header className="header">
@@ -31,6 +36,10 @@ const Header = ({ setInputSearch }) => {
             />
             <Button className="btn btn-warning">Search</Button>
           </Form>
+
+          <Button variant="secondary" onClick={logOutUser}>
+            Logout
+          </Button>
         </Navbar>
       </header>
     </div>
