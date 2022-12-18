@@ -5,22 +5,65 @@ import "../styles/pokemonStyle.scss";
 
 const PokemonComponent = ({ pokemon }) => {
   const [pokemonInfo, setPokemonInfo] = useState();
+  const [pokemonInfoColor, setPokemonInfoColor] = useState("");
+  const [pokemonId, setPokemonId] = useState(0);
   const [error, setError] = useState("");
+
   useEffect(() => {
-    axios
-      .get(pokemon.url)
-      .then((res) => {
+    const fetchPokemon = async () => {
+      try {
+        const res = await axios.get(pokemon.url);
         setPokemonInfo(res.data);
+        setPokemonId(res.data.id);
+      } catch (error) {
+        console.error(error);
+        setError(error.response.data.message);
+      }
+    };
+
+    fetchPokemon();
+  }, []);
+
+  const secretCapacity = () => {
+    const secretCapacity = pokemonInfo?.abilities.find(
+      (ability) => ability.is_hidden === true
+    );
+    if (secretCapacity) {
+      return secretCapacity.ability.name;
+    } else {
+      return "Aucune";
+    }
+  };
+  const capacity = () => {
+    const capacity = pokemonInfo?.abilities.find(
+      (ability) => ability.is_hidden === false
+    );
+    if (capacity) {
+      return capacity.ability.name;
+    } else {
+      return "Aucune";
+    }
+  };
+
+  useEffect(() => {
+    if (pokemonId === 0) return;
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`)
+      .then((res) => {
+        console.log(res);
+        setPokemonInfoColor(res.data.color.name);
       })
       .catch((res) => {
         setError(res.response.data.message);
       });
-  }, [pokemon]);
+  }, [pokemonId]);
 
   return (
     <div className="pokemon-card-container">
       <div className="pokemon-card">
-        <div className="background">
+        <div
+          className="background"
+          style={{ backgroundColor: pokemonInfoColor }}>
           <img
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonInfo?.id}.png`}
             className="image"></img>
@@ -43,11 +86,10 @@ const PokemonComponent = ({ pokemon }) => {
             </span>
           )}
           <div className="pokemon-stats">
-            <p>Power : </p>
-            <p>Damage :</p>
-            <p>Attack: </p>
-            <p>health :</p>
-            <p>Friendly : </p>
+            <p>Capacité :{capacity()}</p>
+            <p>Capacité secrète : {secretCapacity()}</p>
+            <p>Hauteur: {pokemonInfo?.height} </p>
+            <p>Poids: {pokemonInfo?.weight}</p>
           </div>
           <Button variant="primary">Ajouter au pokédex</Button>
 

@@ -12,7 +12,6 @@ function App() {
       navigate("/register");
     }
 
-    //check if token is already in localstorage only if we are on login or register page
     if (
       window.location.pathname === "/login" ||
       window.location.pathname === "/register"

@@ -35,7 +35,6 @@ const Pokedex = () => {
 
       {errorCode === 400 ? (
         <div>
-          <h1>Tu n'as pas encore ajouté de pokémon</h1>
           <img src="https://media.tenor.com/aZuxB-dfJlAAAAAC/pokemon-pocket-monsters.gif"></img>
         </div>
       ) : (
@@ -43,6 +42,8 @@ const Pokedex = () => {
           <h1>Here are your pokemon</h1>
         </div>
       )}
+
+      {error && <h2>{error}</h2>}
     </div>
   );
 };
