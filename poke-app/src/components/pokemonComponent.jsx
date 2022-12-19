@@ -120,7 +120,6 @@ const PokemonComponent = ({ pokemon }) => {
       .catch((res) => {
         console.log(res);
         setError(res.response.data.message);
-        setErrorCode(res.response.status);
       });
   };
 
@@ -164,9 +163,9 @@ const PokemonComponent = ({ pokemon }) => {
           </Button>
 
           <h1 className="pokemon-logo">Pokemon Cards</h1>
+      <div>{error && <p>{error}</p>}</div>
         </div>
       </div>
-      <div>{error && <p>{error}</p>}</div>
     </div>
   );
 };

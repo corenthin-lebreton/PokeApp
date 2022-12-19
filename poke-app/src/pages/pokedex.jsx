@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../styles/homeStyle.scss";
 import Header from "../components/header";
+import {Container, Row, Col, Card} from 'react-bootstrap'
 
 const Pokedex = () => {
   const [error, setError] = useState(null);
@@ -38,9 +39,22 @@ const Pokedex = () => {
           <img src="https://media.tenor.com/aZuxB-dfJlAAAAAC/pokemon-pocket-monsters.gif"></img>
         </div>
       ) : (
-        <div>
-          <h1>Here are your pokemon</h1>
-        </div>
+        <Container>
+          <Row>
+            <Col>
+              <Card>
+                <Card.Img variant="top" src="https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/250px-001Bulbasaur.png" />
+                <Card.Body>
+                  <Card.Title>Bulbasaur</Card.Title>
+                  <Card.Text>
+                    Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun's rays, the seed grows progressively larger.
+                    </Card.Text>
+                </Card.Body>
+                </Card>
+            </Col>
+          </Row>
+
+        </Container>
       )}
 
       {error && <h2>{error}</h2>}

@@ -63,14 +63,14 @@ const Home = () => {
       </Container>
 
       {pages > 0 ? (
-        <Button variant="danger" onClick={previous}>
+        <Button className="button-previous" variant="danger" onClick={previous}>
           Previous
         </Button>
       ) : (
         <></>
       )}
       {pokemon.length === 20 ? (
-        <Button variant="danger" onClick={next}>
+        <Button className="button-next" variant="danger" onClick={next}>
           Next
         </Button>
       ) : (
