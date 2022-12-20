@@ -1,6 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import pokedexx from "../assets/Pokedexx.png";
+import arrowsNext from "../assets/arrows-next.png";
+import arrowsPrevious from "../assets/arrows-previous.png"
 import "../styles/homeStyle.scss";
+import "../styles/pokedexStyle.scss";
 import Header from "../components/header";
 import {Container, Row, Col, Card} from 'react-bootstrap'
 
@@ -34,30 +38,27 @@ const Pokedex = () => {
     <div>
       <Header />
 
-      {errorCode === 400 ? (
+      <div className="background-pokedex">
         <div>
-          <img src="https://media.tenor.com/aZuxB-dfJlAAAAAC/pokemon-pocket-monsters.gif"></img>
+          <img src={pokedexx} alt="pokedexx" className="pokedex"></img>
         </div>
-      ) : (
-        <Container>
-          <Row>
-            <Col>
-              <Card>
-                <Card.Img variant="top" src="https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/250px-001Bulbasaur.png" />
-                <Card.Body>
-                  <Card.Title>Bulbasaur</Card.Title>
-                  <Card.Text>
-                    Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun's rays, the seed grows progressively larger.
-                    </Card.Text>
-                </Card.Body>
-                </Card>
-            </Col>
-          </Row>
 
-        </Container>
-      )}
 
-      {error && <h2>{error}</h2>}
+      <div className="user-interface">
+        <div className="blue-button"></div>
+        <div className="yellow-screen">Numéro du pokemon</div>
+        <div className="first-pokemon-button"></div>
+        <div className="last-pokemon-button"></div>
+
+        <div className="pokemon-name-pokedex">
+          Nom du pokemon
+        </div>
+        <img src={arrowsNext} alt="arrows-next" className="arrows-next"></img>
+        <img src={arrowsPrevious} alt="arrows-previous" className="arrows-previous"></img>
+
+      </div>
+
+      </div>
     </div>
   );
 };
