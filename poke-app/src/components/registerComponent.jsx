@@ -26,26 +26,6 @@ const Register = () => {
     setConfirmPassword(e.target.value);
   };
 
-  //login verification and rediction to home page
-
-  // const loginVerication = () => {
-  //   const data = {
-  //     username: username,
-  //     password: password,
-  //   };
-  //   axios
-  //     .post("http://localhost:3000/api/login", data)
-  //     .then((res) => {
-  //       console.log(res);
-  //       console.log(res.data);
-  //       localStorage.setItem("token", res.data.token);
-  //       window.location.href = "/home";
-  //     })
-  //     .catch((res) => {
-  //       setError(res.response.data.message);
-  //     });
-  // };
-
   const sendDataToApi = () => {
     const data = {
       username: username,
@@ -55,8 +35,6 @@ const Register = () => {
     axios
       .post("http://localhost:3000/api/register", data)
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
         localStorage.setItem("token", res.data.token);
         window.location.href = "/login";
       })

@@ -1,101 +1,101 @@
-.background-pokedex{
-    width: 80vw;
-    height: 75vh;
-    position: absolute;
-    left: 12%;
-    top: 20%;
-    border-radius: 5%;
-    background-color: white;
+.background-pokedex {
+  width: 80vw;
+  height: 75vh;
+  position: absolute;
+  left: 12%;
+  top: 20%;
+  border-radius: 5%;
+  background-color: white;
 }
 
-.pokedex{
-    position: absolute;
-    left: 45%;
-    top: 10%;
-    width: 40vw;
-    border-radius: 5%;
+.pokedex {
+  position: absolute;
+  left: 45%;
+  top: 10%;
+  width: 40vw;
+  border-radius: 5%;
 }
 
-.user-interface{
-    position: absolute;
-    left: 3%;
-    top: 10%;
-    width: 30vw;
-    height: 60vh;
-    background-color: #fb0505;
-    border-radius: 5%;
-    box-shadow: -8px 5px 10px #000000;
+.user-interface {
+  position: absolute;
+  left: 3%;
+  top: 10%;
+  width: 30vw;
+  height: 60vh;
+  background-color: #fb0505;
+  border-radius: 5%;
+  box-shadow: -8px 5px 10px #000000;
 }
 
-.pokemon-name-pokedex{
-    position: absolute;
-    right: 8%;
-    top: 5%;
-    border-radius: 3%;
-    width: 25vw;
-    height: 20vh;
-    text-align: center;
-    font-size: 19px;
-    font-weight: bold;
-    padding: 10px;
-    background-color: whitesmoke;
+.pokemon-name-pokedex {
+  position: absolute;
+  right: 8%;
+  top: 5%;
+  border-radius: 3%;
+  width: 25vw;
+  height: 20vh;
+  text-align: center;
+  font-size: 19px;
+  font-weight: bold;
+  padding: 10px;
+  background-color: whitesmoke;
 }
 
-.first-pokemon-button{
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    width: 5vw;
-    height: 3vh;
-    border-radius: 10%;
-    background-color: green;
-    box-shadow: -5px 0px 0px #000000;
+.first-pokemon-button {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  width: 5vw;
+  height: 3vh;
+  border-radius: 10%;
+  background-color: green;
+  box-shadow: -5px 0px 0px #000000;
 }
 
-.last-pokemon-button{
-    position: absolute;
-    top: 50%;
-    right: 35%;
-    width: 5vw;
-    height: 3vh;
-    border-radius: 10%;
-    background-color: orange;
-    box-shadow: -5px 0px 0px #000000;
+.last-pokemon-button {
+  position: absolute;
+  top: 50%;
+  right: 35%;
+  width: 5vw;
+  height: 3vh;
+  border-radius: 10%;
+  background-color: orange;
+  box-shadow: -5px 0px 0px #000000;
 }
 
-.blue-button{
-    position: absolute;
-    top: 48%;
-    left: 7%;
-    width: 3vw;
-    height: 5vh;
-    border-radius: 50%;
-    background-color: blue;
-    box-shadow: -5px 0px 0px #000000;
+.blue-button {
+  position: absolute;
+  top: 48%;
+  left: 7%;
+  width: 3vw;
+  height: 5vh;
+  border-radius: 50%;
+  background-color: blue;
+  box-shadow: -5px 0px 0px #000000;
 }
 
-.yellow-screen{
-    position: absolute;
-    top: 70%;
-    left: 5%;
-    border-radius: 5%;
-    background-color: yellow;
-    width: 15vw;
-    height: 10vh;
+.yellow-screen {
+  position: absolute;
+  top: 70%;
+  left: 5%;
+  border-radius: 5%;
+  background-color: yellow;
+  width: 15vw;
+  height: 10vh;
 }
 
-.arrows-next{
-    position: absolute;
-    top: 60%;
-    right: 7%;
-    width: 5vw;
-    height: 20vh;
+.arrows-next {
+  position: absolute;
+  top: 60%;
+  right: 7%;
+  width: 5vw;
+  height: 20vh;
 }
 
-.arrows-previous{
-    position: absolute;
-    top: 60%;
-    left: 60%;
-    width: 5vw;
-    height: 20vh;
+.arrows-previous {
+  position: absolute;
+  top: 60%;
+  left: 60%;
+  width: 5vw;
+  height: 20vh;
 }

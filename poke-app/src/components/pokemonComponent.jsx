@@ -8,12 +8,14 @@ const PokemonComponent = ({ pokemon }) => {
   const [pokemonInfoColor, setPokemonInfoColor] = useState("");
   const [pokemonId, setPokemonId] = useState(0);
   const [error, setError] = useState("");
+  const [errorCode, setErrorCode] = useState(null);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchPokemon = async () => {
       try {
         const res = await axios.get(pokemon.url);
+        console.log(res);
         setPokemonInfo(res.data);
         setPokemonId(res.data.id);
       } catch (error) {
@@ -65,7 +67,6 @@ const PokemonComponent = ({ pokemon }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res);
         if (res.data === null) {
           axios
             .post(
@@ -111,15 +112,18 @@ const PokemonComponent = ({ pokemon }) => {
             )
             .then((res) => {})
             .catch((res) => {
-              console.log(res);
-              setError(res.response.data.message);
+              if (res.response.data.message != undefined) {
+                setError(res.response.data.message);
+              }
               setErrorCode(res.response.status);
             });
         }
       })
       .catch((res) => {
         console.log(res);
-        setError(res.response.data.message);
+        if (res.response.data.message != undefined) {
+          setError(res.response.data.message);
+        }
       });
   };
 
@@ -163,7 +167,8 @@ const PokemonComponent = ({ pokemon }) => {
           </Button>
 
           <h1 className="pokemon-logo">Pokemon Cards</h1>
-      <div>{error && <p>{error}</p>}</div>
+          <h1 className="pokemon-logo">{pokemonInfo?.id}</h1>
+          <div>{error && <p>{error}</p>}</div>
         </div>
       </div>
     </div>

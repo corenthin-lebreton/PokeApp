@@ -1,17 +1,32 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import pokedexx from "../assets/Pokedexx.png";
-import arrowsNext from "../assets/arrows-next.png";
-import arrowsPrevious from "../assets/arrows-previous.png"
 import "../styles/homeStyle.scss";
 import "../styles/pokedexStyle.scss";
-import Header from "../components/header";
-import {Container, Row, Col, Card} from 'react-bootstrap'
+import PokedexComponent from "../components/pokedexComponent";
 
 const Pokedex = () => {
   const [error, setError] = useState(null);
   const token = localStorage.getItem("token");
   const [errorCode, setErrorCode] = useState(null);
+  const [pokemonInfo, setPokemonInfo] = useState();
+  const [pokemonId, setPokemonId] = useState([]);
+  const [pokemonIndex, setPokemonIndex] = useState(0);
+
+  const next = () => {
+    if (pokemonIndex === pokemonId.length - 1) {
+      return;
+    } else {
+      setPokemonIndex(pokemonIndex + 1);
+    }
+  };
+
+  const previous = () => {
+    if (pokemonIndex === 0) {
+      return;
+    } else {
+      setPokemonIndex(pokemonIndex - 1);
+    }
+  };
 
   useEffect(() => {
     axios
@@ -19,47 +34,63 @@ const Pokedex = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res);
         if (res.data.length === 0) {
           setErrorCode(400);
         } else {
-          console.log(res);
+          setPokemonId(res.data.pokemons);
         }
-        setNoPokemon(false);
       })
       .catch((res) => {
-        console.log(res);
         setError(res.response.data.message);
         setErrorCode(res.response.status);
       });
   }, []);
 
+  useEffect(() => {
+    if (pokemonId === 0 && pokemonId === undefined) {
+      return;
+    }
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId[pokemonIndex]}`)
+      .then((res) => {
+        setPokemonInfo(res.data);
+      })
+      .catch((res) => {
+        setError(res.response.data.message);
+      });
+  }, [pokemonId, pokemonIndex]);
+
+  const secretCapacity = () => {
+    const secretCapacity = pokemonInfo?.abilities.find(
+      (ability) => ability.is_hidden === true
+    );
+    if (secretCapacity) {
+      return secretCapacity.ability.name;
+    } else {
+      return "Aucune";
+    }
+  };
+  const capacity = () => {
+    const capacity = pokemonInfo?.abilities.find(
+      (ability) => ability.is_hidden === false
+    );
+    if (capacity) {
+      return capacity.ability.name;
+    } else {
+      return "Aucune";
+    }
+  };
+
   return (
-    <div>
-      <Header />
-
-      <div className="background-pokedex">
-        <div>
-          <img src={pokedexx} alt="pokedexx" className="pokedex"></img>
-        </div>
-
-
-      <div className="user-interface">
-        <div className="blue-button"></div>
-        <div className="yellow-screen">Numéro du pokemon</div>
-        <div className="first-pokemon-button"></div>
-        <div className="last-pokemon-button"></div>
-
-        <div className="pokemon-name-pokedex">
-          Nom du pokemon
-        </div>
-        <img src={arrowsNext} alt="arrows-next" className="arrows-next"></img>
-        <img src={arrowsPrevious} alt="arrows-previous" className="arrows-previous"></img>
-
-      </div>
-
-      </div>
-    </div>
+    <PokedexComponent
+      error={error}
+      errorCode={errorCode}
+      pokemon={pokemonInfo}
+      secretCapacity={secretCapacity()}
+      capacity={capacity()}
+      next={next}
+      previous={previous}
+    />
   );
 };
 
