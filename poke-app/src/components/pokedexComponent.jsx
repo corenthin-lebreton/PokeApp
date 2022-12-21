@@ -43,7 +43,15 @@ const PokedexComponent = ({
               {pokemon?.name}
               <p>Capacité : {capacity}</p>
               <p>Capacité secrète : {secretCapacity}</p>
-              <p>Type : </p>
+              {pokemon?.types.length > 1 ? (
+                <div>
+                  <p>{pokemon?.types[0].type.name}</p>
+
+                  <p>{pokemon?.types[1].type.name}</p>
+                </div>
+              ) : (
+                <p>{pokemon?.types[0].type.name}</p>
+              )}
               <p>Poids : {pokemon?.weight} </p>
             </div>
             <img
