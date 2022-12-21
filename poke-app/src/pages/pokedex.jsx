@@ -4,6 +4,7 @@ import "../styles/homeStyle.scss";
 import "../styles/pokedexStyle.scss";
 import PokedexComponent from "../components/pokedexComponent";
 import Header from "../components/header";
+import pokeball from "../assets/pokeball.png";
 
 const Pokedex = () => {
   const [error, setError] = useState(null);
@@ -38,6 +39,7 @@ const Pokedex = () => {
         if (res.data.length === 0) {
           setErrorCode(400);
         } else {
+          console.log(res.data)
           setPokemonId(res.data.pokemons);
         }
       })
@@ -124,8 +126,11 @@ const Pokedex = () => {
       {errorCode === 400 ? (
         <div>
           <Header />
-          <img src="https://media.tenor.com/7C6H6TQk-D8AAAAC/pokemon-ash.gif"></img>
-          {error && <p>{error}</p>}
+          <p className="titre-pokedex">Voici votre Pokedex ! </p>
+          <img src={pokeball} alt="pokeballs" className="pokeball-1-pokedex"></img>
+          <img src={pokeball} alt="pokeballs" className="pokeball-2-pokedex"></img>
+          <img src="https://media.tenor.com/7C6H6TQk-D8AAAAC/pokemon-ash.gif" className="sad-sasha"></img>
+          {error && <p className="no-pokemon">{error}</p>}
         </div>
       ) : (
         <PokedexComponent

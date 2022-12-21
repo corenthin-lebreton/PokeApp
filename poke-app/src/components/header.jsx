@@ -25,6 +25,7 @@ const Header = ({ setInputSearch }) => {
             alt="liste-pokemon"
             className="image-pikachu"></img>
         </a>
+
         <Navbar bg="none" expand="lg" className="navbar">
           <Form className="d-flex">
             <Form.Control

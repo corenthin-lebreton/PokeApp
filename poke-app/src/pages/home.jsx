@@ -4,6 +4,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import PokemonComponent from "../components/pokemonComponent";
 import "../styles/homeStyle.scss";
 import Header from "../components/header";
+import pokeball from "../assets/pokeball.png";
 
 const Home = () => {
   const [error, setError] = useState("");
@@ -58,6 +59,9 @@ const Home = () => {
   return (
     <>
       <Header setInputSearch={setInputSearch} />
+      <img src={pokeball} alt="pokeballs" className="pokeball-1-home"></img>
+      <img src={pokeball} alt="pokeballs" className="pokeball-2-home"></img>
+      <p className="titre-home">Choisissez vos Pokemons ! </p>
       <Container>
         <Row>{pokemonCardDisplay}</Row>
       </Container>
