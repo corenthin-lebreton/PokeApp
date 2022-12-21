@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/homeStyle.scss";
 import "../styles/pokedexStyle.scss";
 import PokedexComponent from "../components/pokedexComponent";
+import Header from "../components/header";
 
 const Pokedex = () => {
   const [error, setError] = useState(null);
@@ -47,13 +48,16 @@ const Pokedex = () => {
   }, []);
 
   useEffect(() => {
-    if (pokemonId === 0 && pokemonId === undefined) {
+    if (pokemonId.length === 0) {
+      setErrorCode(400);
+      setError("Vous n'avez plus de pokemon. Ajoutez en un nouveau.");
       return;
     }
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId[pokemonIndex]}`)
       .then((res) => {
         setPokemonInfo(res.data);
+        setErrorCode(200);
       })
       .catch((res) => {
         setError(res.response.data.message);
@@ -81,16 +85,63 @@ const Pokedex = () => {
     }
   };
 
+  const deletePokemon = () => {
+    const data = {
+      id: pokemonId[pokemonIndex],
+    };
+
+    axios
+      .delete(
+        `http://localhost:3000/api/deletePokemon/`,
+
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+        { data }
+      )
+      .then((res) => {
+        setPokemonId(pokemonId.filter((id) => id !== pokemonId[pokemonIndex]));
+        setPokemonIndex(0);
+      })
+      .catch((res) => {
+        setError(res.response.data.message);
+        setErrorCode(res.response.status);
+      });
+  };
+
+  const switchToFirstPokemon = () => {
+    if (pokemonIndex === 0) return;
+    setPokemonIndex(0);
+  };
+
+  const switchToLastPokemon = () => {
+    if (pokemonIndex === pokemonId.length - 1) return;
+    setPokemonIndex(pokemonId.length - 1);
+  };
+
   return (
-    <PokedexComponent
-      error={error}
-      errorCode={errorCode}
-      pokemon={pokemonInfo}
-      secretCapacity={secretCapacity()}
-      capacity={capacity()}
-      next={next}
-      previous={previous}
-    />
+    <div>
+      {errorCode === 400 ? (
+        <div>
+          <Header />
+          <img src="https://media.tenor.com/7C6H6TQk-D8AAAAC/pokemon-ash.gif"></img>
+          {error && <p>{error}</p>}
+        </div>
+      ) : (
+        <PokedexComponent
+          error={error}
+          errorCode={errorCode}
+          pokemon={pokemonInfo}
+          secretCapacity={secretCapacity()}
+          capacity={capacity()}
+          next={next}
+          previous={previous}
+          deletePokemon={deletePokemon}
+          switchToFirstPokemon={switchToFirstPokemon}
+          switchToLastPokemon={switchToLastPokemon}
+        />
+      )}
+    </div>
   );
 };
 

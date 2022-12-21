@@ -15,7 +15,6 @@ const PokemonComponent = ({ pokemon }) => {
     const fetchPokemon = async () => {
       try {
         const res = await axios.get(pokemon.url);
-        console.log(res);
         setPokemonInfo(res.data);
         setPokemonId(res.data.id);
       } catch (error) {
@@ -78,11 +77,10 @@ const PokemonComponent = ({ pokemon }) => {
               }
             )
             .then((res) => {
-              console.log("pokedex added");
               axios
                 .patch(
                   "http://localhost:3000/api/addPokemon",
-                  { id: pokemonInfo?.id, name: pokemonInfo?.name },
+                  { id: pokemonInfo?.id },
                   {
                     "Content-Type": "application/json",
                     headers: { Authorization: `Bearer ${token}` },
