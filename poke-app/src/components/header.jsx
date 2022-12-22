@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 
-const Header = ({ setInputSearch }) => {
+const Header = ({ setInputSearch, isSearchingOnPokedex, search }) => {
   const logOutUser = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
@@ -35,7 +35,9 @@ const Header = ({ setInputSearch }) => {
               aria-label="Search"
               onChange={(e) => setInputSearch(e.target.value)}
             />
-            <Button className="btn btn-warning">Search</Button>
+            <Button className="btn btn-warning" onClick={search}>
+              Search
+            </Button>
           </Form>
 
           <Button variant="secondary" onClick={logOutUser}>

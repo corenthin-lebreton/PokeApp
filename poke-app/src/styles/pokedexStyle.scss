@@ -8,14 +8,14 @@
   background-color: white;
 }
 
-.titre-pokedex{
+.titre-pokedex {
   position: absolute;
   left: 42%;
   top: 3.5%;
   font-size: xx-large;
 }
 
-.no-pokemon{
+.no-pokemon {
   color: white;
   position: absolute;
   font-size: large;
@@ -23,21 +23,21 @@
   top: 70%;
 }
 
-.pokeball-1-pokedex{
+.pokeball-1-pokedex {
   width: 2vw;
   position: absolute;
   left: 38.5%;
   top: 5%;
 }
 
-.pokeball-2-pokedex{
+.pokeball-2-pokedex {
   width: 2vw;
   position: absolute;
   right: 35%;
   top: 5%;
 }
 
-.sad-sasha{
+.sad-sasha {
   width: 30vw;
   position: absolute;
   left: 35%;
@@ -77,16 +77,16 @@
   background-color: whitesmoke;
 }
 
-.pokemon-image{
+.pokemon-image {
   position: absolute;
   left: 47%;
   top: 30%;
   width: 16vw;
 }
 
-.pokemon-names{
+.pokemon-names {
   position: absolute;
-  font-size:xx-large;
+  font-size: xx-large;
   left: 30%;
   top: 30%;
 }
@@ -150,40 +150,40 @@
   height: 20vh;
 }
 
-.pokemon-capacity{
-  font-size:small;
+.pokemon-capacity {
+  font-size: small;
   width: 20vw;
   position: absolute;
   text-align: start;
   left: 220%;
-  top: 70% ;
+  top: 70%;
 }
 
-.pokemon-types{
+.pokemon-types {
   position: absolute;
   left: 12%;
   top: 30%;
 }
 
-.pokemon-single-type{
+.pokemon-single-type {
   position: absolute;
   left: 40%;
   top: 31%;
 }
 
-.pokemon-type-1{
+.pokemon-type-1 {
   position: absolute;
   left: 40%;
   top: 31%;
 }
 
-.pokemon-type-2{
+.pokemon-type-2 {
   position: absolute;
   left: 60%;
   top: 31%;
 }
 
-.pokemon-poids{
+.pokemon-poids {
   font-size: small;
   text-align: start;
   position: absolute;
@@ -192,11 +192,15 @@
   top: 120%;
 }
 
-.pokemon-id{
+.pokemon-id {
   font-size: small;
   text-align: start;
   position: absolute;
   left: 220%;
   width: 20vw;
   top: 145%;
+}
+
+.errorSearch {
+  text-align: center;
 }

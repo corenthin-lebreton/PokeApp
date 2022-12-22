@@ -13,7 +13,9 @@ const Pokedex = () => {
   const [pokemonInfo, setPokemonInfo] = useState();
   const [pokemonId, setPokemonId] = useState([]);
   const [pokemonIndex, setPokemonIndex] = useState(0);
-
+  const [inputSearch, setInputSearch] = useState("");
+  const [errorSearch, setErrorSearch] = useState("");
+  //---------------------------Go to the first and last pokemon----------------------------
   const next = () => {
     if (pokemonIndex === pokemonId.length - 1) {
       return;
@@ -29,7 +31,9 @@ const Pokedex = () => {
       setPokemonIndex(pokemonIndex - 1);
     }
   };
+  //---------------------------------------------------------------------------------------
 
+  //----------------------------Verify if a pokedex already exists------------------------
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/pokedex", {
@@ -39,7 +43,6 @@ const Pokedex = () => {
         if (res.data.length === 0) {
           setErrorCode(400);
         } else {
-          console.log(res.data)
           setPokemonId(res.data.pokemons);
         }
       })
@@ -48,7 +51,9 @@ const Pokedex = () => {
         setErrorCode(res.response.status);
       });
   }, []);
+  //-------------------------------------------------------------------------------------
 
+  //-------------------Get Pokemon Info to add it on the pokedex display-----------------
   useEffect(() => {
     if (pokemonId.length === 0) {
       setErrorCode(400);
@@ -66,6 +71,9 @@ const Pokedex = () => {
       });
   }, [pokemonId, pokemonIndex]);
 
+  //---------------------------------------------------------------------------------
+
+  //----------------Get  one capacity and secret capacity---------------------------
   const secretCapacity = () => {
     const secretCapacity = pokemonInfo?.abilities.find(
       (ability) => ability.is_hidden === true
@@ -86,7 +94,7 @@ const Pokedex = () => {
       return "Aucune";
     }
   };
-
+  //------------------------------Delete Pokemon from Pokedex-------------------------------------------------------
   const deletePokemon = () => {
     const data = {
       id: pokemonId[pokemonIndex],
@@ -110,6 +118,7 @@ const Pokedex = () => {
         setErrorCode(res.response.status);
       });
   };
+  //--------------------------Go to the first and last Pokemon from Pokedex-------------------------
 
   const switchToFirstPokemon = () => {
     if (pokemonIndex === 0) return;
@@ -121,30 +130,62 @@ const Pokedex = () => {
     setPokemonIndex(pokemonId.length - 1);
   };
 
+  //---------------------------------------------------------------------------------------
+
+  //--------------------------------SearchBar feature----------------------------------------
+
+  const search = async () => {
+    const data = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${inputSearch}`
+    );
+
+    if (pokemonId.includes(data.data.id)) {
+      setPokemonIndex(pokemonId.indexOf(data.data.id));
+    } else {
+      setErrorSearch("Ce pokemon n'est pas dans votre Pokedex");
+    }
+    //remettre la barre de recherche vide
+    setInputSearch("");
+  };
+
+  //---------------------------------------------------------------------------------------
+
   return (
     <div>
       {errorCode === 400 ? (
         <div>
-          <Header />
+          <Header setInputSearch={setInputSearch} />
           <p className="titre-pokedex">Voici votre Pokedex ! </p>
-          <img src={pokeball} alt="pokeballs" className="pokeball-1-pokedex"></img>
-          <img src={pokeball} alt="pokeballs" className="pokeball-2-pokedex"></img>
-          <img src="https://media.tenor.com/7C6H6TQk-D8AAAAC/pokemon-ash.gif" className="sad-sasha"></img>
+          <img
+            src={pokeball}
+            alt="pokeballs"
+            className="pokeball-1-pokedex"></img>
+          <img
+            src={pokeball}
+            alt="pokeballs"
+            className="pokeball-2-pokedex"></img>
+          <img
+            src="https://media.tenor.com/7C6H6TQk-D8AAAAC/pokemon-ash.gif"
+            className="sad-sasha"></img>
           {error && <p className="no-pokemon">{error}</p>}
         </div>
       ) : (
-        <PokedexComponent
-          error={error}
-          errorCode={errorCode}
-          pokemon={pokemonInfo}
-          secretCapacity={secretCapacity()}
-          capacity={capacity()}
-          next={next}
-          previous={previous}
-          deletePokemon={deletePokemon}
-          switchToFirstPokemon={switchToFirstPokemon}
-          switchToLastPokemon={switchToLastPokemon}
-        />
+        <div>
+          <Header setInputSearch={setInputSearch} search={search} />
+          <PokedexComponent
+            error={error}
+            errorCode={errorCode}
+            pokemon={pokemonInfo}
+            secretCapacity={secretCapacity()}
+            capacity={capacity()}
+            next={next}
+            previous={previous}
+            deletePokemon={deletePokemon}
+            switchToFirstPokemon={switchToFirstPokemon}
+            switchToLastPokemon={switchToLastPokemon}
+            errorSearch={errorSearch}
+          />
+        </div>
       )}
     </div>
   );
