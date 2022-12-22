@@ -1,6 +1,6 @@
 import axios from "axios";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import React, { useEffect, useState } from "react";
 import "../styles/homeStyle.scss";
 import "../styles/pokedexStyle.scss";
@@ -38,7 +38,7 @@ const Pokedex = () => {
   //----------------------------Verify if a pokedex already exists------------------------
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/pokedex", {
+      .get("https://api-pokemon-app.onrender.com/api/pokedex", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -104,7 +104,7 @@ const Pokedex = () => {
 
     axios
       .delete(
-        `http://localhost:3000/api/deletePokemon/`,
+        `https://api-pokemon-app.onrender.com/api/deletePokemon/`,
 
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -135,8 +135,7 @@ const Pokedex = () => {
   //---------------------------------SearchBar---------------------------------------------------------
   const search = async () => {
     const data = await axios.get(`
-      https://pokeapi.co/api/v2/pokemon/${inputSearch}`
-    );
+      https://pokeapi.co/api/v2/pokemon/${inputSearch}`);
 
     if (pokemonId.includes(data.data.id)) {
       setPokemonIndex(pokemonId.indexOf(data.data.id));
@@ -144,7 +143,7 @@ const Pokedex = () => {
       setErrorSearch("Ce pokemon n'est pas dans votre Pokedex");
     }
   };
-  
+
   //----------------------------------------------------------------------------------------------------
   return (
     <div>

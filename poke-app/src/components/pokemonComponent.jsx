@@ -61,7 +61,7 @@ const PokemonComponent = ({ pokemon }) => {
 
   const createPokedexAndAddPokemon = (pokemonInfo) => {
     axios
-      .get("http://localhost:3000/api/pokedextoadd", {
+      .get("https://api-pokemon-app.onrender.com/api/pokedextoadd", {
         "Content-Type": "application/json",
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -69,7 +69,7 @@ const PokemonComponent = ({ pokemon }) => {
         if (res.data === null) {
           axios
             .post(
-              "http://localhost:3000/api/create",
+              "https://api-pokemon-app.onrender.com/api/create",
               {},
               {
                 "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const PokemonComponent = ({ pokemon }) => {
             .then((res) => {
               axios
                 .patch(
-                  "http://localhost:3000/api/addPokemon",
+                  "https://api-pokemon-app.onrender.com/api/addPokemon",
                   { id: pokemonInfo?.id },
                   {
                     "Content-Type": "application/json",
@@ -101,7 +101,7 @@ const PokemonComponent = ({ pokemon }) => {
         } else {
           axios
             .patch(
-              "http://localhost:3000/api/addPokemon",
+              "https://api-pokemon-app.onrender.com/api/addPokemon",
               { id: pokemonInfo?.id, name: pokemonInfo?.name },
               {
                 "Content-Type": "application/json",
