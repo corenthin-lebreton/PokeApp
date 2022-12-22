@@ -1,2 +1,2 @@
 # PokeApp
-ReactJS application linked with the ApiPokeApp Repository
+ReactJS application linked with the ApiPokeApp Repository with localhost
