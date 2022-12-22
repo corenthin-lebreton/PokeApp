@@ -1,0 +1,65 @@
+.header {
+  background-color: red;
+  height: 13vh;
+}
+
+.titre-home{
+  position: absolute;
+  left: 41%;
+  top: 3.5%;
+  font-size: xx-large;
+}
+
+.pokeball-1-home{
+  width: 2vw;
+  position: absolute;
+  left: 38%;
+  top: 5%;
+}
+
+.pokeball-2-home{
+  width: 2vw;
+  position: absolute;
+  right: 31%;
+  top: 5%;
+}
+
+.logo-home {
+  width: 14vw;
+  margin-left: 30px;
+}
+
+.image-pokedex {
+  width: 7vw;
+  margin-left: 50px;
+}
+
+.image-pikachu {
+  width: 7vw;
+  margin-left: 50px;
+}
+
+.header-titre {
+  position: absolute;
+  left: 35rem;
+  top: 1.5rem;
+}
+
+.navbar {
+  position: absolute;
+  left: 65rem;
+  bottom: 4rem;
+}
+
+.button-next{
+  position: absolute;
+  width: 10vw;
+  left: 60%;
+}
+
+.button-previous{
+  position: absolute;
+  width: 10vw;
+  right: 60%;
+}
+

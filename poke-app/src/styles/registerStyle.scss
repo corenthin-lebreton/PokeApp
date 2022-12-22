@@ -1,0 +1,57 @@
+.logo-register {
+  position: absolute;
+  height: 15rem;
+  top: 30%;
+  left: 5%;
+}
+
+.register-container {
+  background-color: white;
+  position: absolute;
+  height: 30rem;
+  width: 35rem;
+  left: 55%;
+  top: 20%;
+  border-radius: 2rem;
+}
+
+.form-register {
+  text-align: center;
+  margin-top: -30%;
+}
+
+.register {
+  margin-top: 50%;
+}
+
+.register-title {
+  text-align: center;
+  transform: translateY(5rem);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.form-fields {
+  text-align: center;
+}
+
+.test {
+  margin-top: 5%;
+  width: 20rem;
+  border: 1px solid black;
+  margin-left: 7rem;
+}
+.error {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.connection-link {
+  text-align: center;
+}
+@media screen and (width < 1767px) {
+  .logo-login {
+    transform: translateY(15rem);
+    margin-left: 45%;
+  }
+}

@@ -1,0 +1,48 @@
+.logo-login {
+  position: absolute;
+  height: 15rem;
+  right: 51.2%;
+  top: -1.8%;
+
+}
+
+.login-container {
+  background-color: white;
+  position: absolute;
+  height: 30rem;
+  width: 35rem;
+  left: 55%;
+  top: 20%;
+  border-radius: 2rem;
+}
+
+.form-login {
+  text-align: center;
+  margin-top: -30%;
+}
+
+.login {
+  margin-top: 50%;
+}
+
+.login-title {
+  text-align: center;
+  transform: translateY(5rem);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.form-fields {
+  text-align: center;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+@media screen and (width < 1767px) {
+  .logo-login {
+    transform: translateY(15rem);
+    margin-left: 45%;
+  }
+}
