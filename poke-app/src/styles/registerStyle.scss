@@ -1,17 +1,17 @@
 .logo-register {
-  height: 20rem;
-
-  transform: translateY(25rem);
-  margin-left: 6rem;
+  position: absolute;
+  height: 15rem;
+  top: 30%;
+  left: 5%;
 }
 
 .register-container {
   background-color: white;
+  position: absolute;
   height: 30rem;
   width: 35rem;
-  float: right;
-  margin-right: 15rem;
-  margin-top: 25rem;
+  left: 55%;
+  top: 20%;
   border-radius: 2rem;
 }
 

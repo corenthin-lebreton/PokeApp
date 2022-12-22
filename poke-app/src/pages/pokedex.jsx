@@ -1,4 +1,6 @@
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import React, { useEffect, useState } from "react";
 import "../styles/homeStyle.scss";
 import "../styles/pokedexStyle.scss";
@@ -130,13 +132,10 @@ const Pokedex = () => {
     setPokemonIndex(pokemonId.length - 1);
   };
 
-  //---------------------------------------------------------------------------------------
-
-  //--------------------------------SearchBar feature----------------------------------------
-
+  //---------------------------------SearchBar---------------------------------------------------------
   const search = async () => {
-    const data = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${inputSearch}`
+    const data = await axios.get(`
+      https://pokeapi.co/api/v2/pokemon/${inputSearch}`
     );
 
     if (pokemonId.includes(data.data.id)) {
@@ -144,12 +143,9 @@ const Pokedex = () => {
     } else {
       setErrorSearch("Ce pokemon n'est pas dans votre Pokedex");
     }
-    //remettre la barre de recherche vide
-    setInputSearch("");
   };
-
-  //---------------------------------------------------------------------------------------
-
+  
+  //----------------------------------------------------------------------------------------------------
   return (
     <div>
       {errorCode === 400 ? (
