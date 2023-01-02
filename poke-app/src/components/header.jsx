@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import image from "../assets/logo.png";
 import pokedex from "../assets/Pokedex.png";
 import pikachu from "../assets/pikachu.png";
+import pokebattle from "../assets/pokebattle.png"
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
@@ -24,6 +25,13 @@ const Header = ({ setInputSearch, isSearchingOnPokedex, search }) => {
             src={pikachu}
             alt="liste-pokemon"
             className="image-pikachu"></img>
+        </a>
+
+        <a href="/pokebattle">
+          <img 
+          src={pokebattle}
+          alt="battle"
+          className="image-pokebattle"></img>
         </a>
 
         <Navbar bg="none" expand="lg" className="navbar">

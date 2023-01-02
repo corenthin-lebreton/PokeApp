@@ -10,7 +10,7 @@
 
 .titre-pokedex {
   position: absolute;
-  left: 42%;
+  left: 44.8%;
   top: 3.5%;
   font-size: xx-large;
 }
@@ -26,14 +26,14 @@
 .pokeball-1-pokedex {
   width: 2vw;
   position: absolute;
-  left: 38.5%;
+  left: 42%;
   top: 5%;
 }
 
 .pokeball-2-pokedex {
   width: 2vw;
   position: absolute;
-  right: 35%;
+  right: 33%;
   top: 5%;
 }
 
@@ -87,34 +87,33 @@
 .first-pokemon-button {
   position: absolute;
   top: 50%;
-  left: 25%;
+  left: 26%;
   width: 5vw;
   height: 3vh;
   border-radius: 10%;
   background-color: green;
   box-shadow: -5px 0px 0px #000000;
+  cursor: pointer;
 }
 
 .last-pokemon-button {
   position: absolute;
   top: 50%;
-  right: 79.5%;
+  right: 77%;
   width: 5vw;
   height: 3vh;
   border-radius: 10%;
   background-color: orange;
   box-shadow: -5px 0px 0px #000000;
+  cursor: pointer;
 }
 
-.blue-button {
+.pokebag{
   position: absolute;
-  top: 48%;
-  left: 7%;
-  width: 3vw;
-  height: 5vh;
-  border-radius: 50%;
-  background-color: blue;
-  box-shadow: -5px 0px 0px #000000;
+  top: 45%;
+  left: 10%;
+  width: 5vw;
+  cursor: pointer;
 }
 
 .yellow-screen {
@@ -134,6 +133,7 @@
   right: 7%;
   width: 5vw;
   height: 20vh;
+  cursor: pointer;
 }
 
 .arrows-previous {
@@ -143,6 +143,7 @@
   right: 7%;
   width: 5vw;
   height: 20vh;
+  cursor: pointer;
 }
 
 .pokemon-capacity {

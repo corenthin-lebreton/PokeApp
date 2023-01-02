@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import pokedexx from "../assets/Pokedexx.png";
 import arrowsNext from "../assets/arrows-next.png";
 import arrowsPrevious from "../assets/arrows-previous.png";
+import pokebag from "../assets/pokebag.png"
 import "../styles/homeStyle.scss";
 import "../styles/pokedexStyle.scss";
 import pokeball from "../assets/pokeball.png";
@@ -38,7 +39,7 @@ const PokedexComponent = ({
           </div>
 
           <div className="user-interface">
-            <div className="blue-button"></div>
+            <img src={pokebag} alt="pokebag" className="pokebag"></img>
 
             <div className="yellow-screen"></div>
           </div>
@@ -52,8 +53,8 @@ const PokedexComponent = ({
 
             <div className="pokemon-capacity"></div>
 
-            <p className="pokemon-poids">Poids : </p>
-            <p className="pokemon-id">Numéro du pokemon : </p>
+            <p className="pokemon-poids"></p>
+            <p className="pokemon-id"></p>
           </div>
 
           <img src={arrowsNext} alt="arrows-next" className="arrows-next"></img>
