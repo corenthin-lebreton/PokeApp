@@ -37,13 +37,6 @@
   top: 5%;
 }
 
-.sad-sasha {
-  width: 30vw;
-  position: absolute;
-  left: 35%;
-  top: 25%;
-}
-
 .pokedex {
   position: absolute;
   left: 45%;
@@ -65,8 +58,8 @@
 
 .pokemon-name-pokedex {
   position: absolute;
-  right: 8%;
-  top: 5%;
+  left: 6%;
+  top: 15%;
   border-radius: 3%;
   width: 25vw;
   height: 20vh;
@@ -105,7 +98,7 @@
 .last-pokemon-button {
   position: absolute;
   top: 50%;
-  right: 35%;
+  right: 79.5%;
   width: 5vw;
   height: 3vh;
   border-radius: 10%;
@@ -136,7 +129,8 @@
 
 .arrows-next {
   position: absolute;
-  top: 60%;
+  left: 32%;
+  top: 58%;
   right: 7%;
   width: 5vw;
   height: 20vh;
@@ -144,8 +138,9 @@
 
 .arrows-previous {
   position: absolute;
-  top: 60%;
-  left: 60%;
+  left: 25.8%;
+  top: 58%;
+  right: 7%;
   width: 5vw;
   height: 20vh;
 }

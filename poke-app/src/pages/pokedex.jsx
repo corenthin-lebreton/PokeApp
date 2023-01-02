@@ -36,101 +36,101 @@ const Pokedex = () => {
   //---------------------------------------------------------------------------------------
 
   //----------------------------Verify if a pokedex already exists------------------------
-  useEffect(() => {
-    axios
-      .get("https://api-pokemon-app.onrender.com/api/pokedex", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        if (res.data.length === 0) {
-          setErrorCode(400);
-        } else {
-          setPokemonId(res.data.pokemons);
-        }
-      })
-      .catch((res) => {
-        setError(res.response.data.message);
-        setErrorCode(res.response.status);
-      });
-  }, []);
-  //-------------------------------------------------------------------------------------
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3000/api/pokedex", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((res) => {
+  //       if (res.data.length === 0) {
+  //         setErrorCode(400);
+  //       } else {
+  //         setPokemonId(res.data.pokemons);
+  //       }
+  //     })
+  //     .catch((res) => {
+  //       setError(res.response.data.message);
+  //       setErrorCode(res.response.status);
+  //     });
+  // }, []);
+  // //-------------------------------------------------------------------------------------
 
-  //-------------------Get Pokemon Info to add it on the pokedex display-----------------
-  useEffect(() => {
-    if (pokemonId.length === 0) {
-      setErrorCode(400);
-      setError("Vous n'avez plus de pokemon. Ajoutez en un nouveau.");
-      return;
-    }
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId[pokemonIndex]}`)
-      .then((res) => {
-        setPokemonInfo(res.data);
-        setErrorCode(200);
-      })
-      .catch((res) => {
-        setError(res.response.data.message);
-      });
-  }, [pokemonId, pokemonIndex]);
+  // //-------------------Get Pokemon Info to add it on the pokedex display-----------------
+  // useEffect(() => {
+  //   if (pokemonId.length === 0) {
+  //     setErrorCode(400);
+  //     setError("Vous n'avez plus de pokemon. Ajoutez en un nouveau.");
+  //     return;
+  //   }
+  //   axios
+  //     .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId[pokemonIndex]}`)
+  //     .then((res) => {
+  //       setPokemonInfo(res.data);
+  //       setErrorCode(200);
+  //     })
+  //     .catch((res) => {
+  //       setError(res.response.data.message);
+  //     });
+  // }, [pokemonId, pokemonIndex]);
 
-  //---------------------------------------------------------------------------------
+  // //---------------------------------------------------------------------------------
 
-  //----------------Get  one capacity and secret capacity---------------------------
-  const secretCapacity = () => {
-    const secretCapacity = pokemonInfo?.abilities.find(
-      (ability) => ability.is_hidden === true
-    );
-    if (secretCapacity) {
-      return secretCapacity.ability.name;
-    } else {
-      return "Aucune";
-    }
-  };
-  const capacity = () => {
-    const capacity = pokemonInfo?.abilities.find(
-      (ability) => ability.is_hidden === false
-    );
-    if (capacity) {
-      return capacity.ability.name;
-    } else {
-      return "Aucune";
-    }
-  };
-  //------------------------------Delete Pokemon from Pokedex-------------------------------------------------------
-  const deletePokemon = () => {
-    const data = {
-      id: pokemonId[pokemonIndex],
-    };
+  // //----------------Get  one capacity and secret capacity---------------------------
+  // const secretCapacity = () => {
+  //   const secretCapacity = pokemonInfo?.abilities.find(
+  //     (ability) => ability.is_hidden === true
+  //   );
+  //   if (secretCapacity) {
+  //     return secretCapacity.ability.name;
+  //   } else {
+  //     return "Aucune";
+  //   }
+  // };
+  // const capacity = () => {
+  //   const capacity = pokemonInfo?.abilities.find(
+  //     (ability) => ability.is_hidden === false
+  //   );
+  //   if (capacity) {
+  //     return capacity.ability.name;
+  //   } else {
+  //     return "Aucune";
+  //   }
+  // };
+  // //------------------------------Delete Pokemon from Pokedex-------------------------------------------------------
+  // const deletePokemon = () => {
+  //   const data = {
+  //     id: pokemonId[pokemonIndex],
+  //   };
 
-    axios
-      .delete(
-        `https://api-pokemon-app.onrender.com/api/deletePokemon/`,
+  //   axios
+  //     .delete(
+  //       `http://localhost:3000/api/deletePokemon/`,
 
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-        { data }
-      )
-      .then((res) => {
-        setPokemonId(pokemonId.filter((id) => id !== pokemonId[pokemonIndex]));
-        setPokemonIndex(0);
-      })
-      .catch((res) => {
-        setError(res.response.data.message);
-        setErrorCode(res.response.status);
-      });
-  };
-  //--------------------------Go to the first and last Pokemon from Pokedex-------------------------
+  //       {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       },
+  //       { data }
+  //     )
+  //     .then((res) => {
+  //       setPokemonId(pokemonId.filter((id) => id !== pokemonId[pokemonIndex]));
+  //       setPokemonIndex(0);
+  //     })
+  //     .catch((res) => {
+  //       setError(res.response.data.message);
+  //       setErrorCode(res.response.status);
+  //     });
+  // };
+  // //--------------------------Go to the first and last Pokemon from Pokedex-------------------------
 
-  const switchToFirstPokemon = () => {
-    if (pokemonIndex === 0) return;
-    setPokemonIndex(0);
-  };
+  // const switchToFirstPokemon = () => {
+  //   if (pokemonIndex === 0) return;
+  //   setPokemonIndex(0);
+  // };
 
-  const switchToLastPokemon = () => {
-    if (pokemonIndex === pokemonId.length - 1) return;
-    setPokemonIndex(pokemonId.length - 1);
-  };
+  // const switchToLastPokemon = () => {
+  //   if (pokemonIndex === pokemonId.length - 1) return;
+  //   setPokemonIndex(pokemonId.length - 1);
+  // };
 
   //---------------------------------SearchBar---------------------------------------------------------
   const search = async () => {
@@ -147,41 +147,26 @@ const Pokedex = () => {
   //----------------------------------------------------------------------------------------------------
   return (
     <div>
-      {errorCode === 400 ? (
-        <div>
-          <Header setInputSearch={setInputSearch} />
-          <p className="titre-pokedex">Voici votre Pokedex ! </p>
-          <img
-            src={pokeball}
-            alt="pokeballs"
-            className="pokeball-1-pokedex"></img>
-          <img
-            src={pokeball}
-            alt="pokeballs"
-            className="pokeball-2-pokedex"></img>
-          <img
-            src="https://media.tenor.com/7C6H6TQk-D8AAAAC/pokemon-ash.gif"
-            className="sad-sasha"></img>
-          {error && <p className="no-pokemon">{error}</p>}
-        </div>
-      ) : (
-        <div>
-          <Header setInputSearch={setInputSearch} search={search} />
-          <PokedexComponent
-            error={error}
-            errorCode={errorCode}
-            pokemon={pokemonInfo}
-            secretCapacity={secretCapacity()}
-            capacity={capacity()}
-            next={next}
-            previous={previous}
-            deletePokemon={deletePokemon}
-            switchToFirstPokemon={switchToFirstPokemon}
-            switchToLastPokemon={switchToLastPokemon}
-            errorSearch={errorSearch}
-          />
-        </div>
-      )}
+      <div>
+        <p className="titre-pokedex">Voici votre Pokedex ! </p>
+      </div>
+
+      <div>
+        <Header setInputSearch={setInputSearch} search={search} />
+        <PokedexComponent
+        // error={error}
+        // errorCode={errorCode}
+        // pokemon={pokemonInfo}
+        // secretCapacity={secretCapacity()}
+        // capacity={capacity()}
+        // next={next}
+        // previous={previous}
+        // deletePokemon={deletePokemon}
+        // switchToFirstPokemon={switchToFirstPokemon}
+        // switchToLastPokemon={switchToLastPokemon}
+        // errorSearch={errorSearch}
+        />
+      </div>
     </div>
   );
 };
