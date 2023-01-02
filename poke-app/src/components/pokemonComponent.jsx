@@ -59,71 +59,7 @@ const PokemonComponent = ({ pokemon }) => {
       });
   }, [pokemonId]);
 
-  const createPokedexAndAddPokemon = (pokemonInfo) => {
-    axios
-      .get("http://localhost:3000/api/pokedextoadd", {
-        "Content-Type": "application/json",
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        if (res.data === null) {
-          axios
-            .post(
-              "http://localhost:3000/api/create",
-              {},
-              {
-                "Content-Type": "application/json",
-                headers: { Authorization: `Bearer ${token}` },
-              }
-            )
-            .then((res) => {
-              axios
-                .patch(
-                  "http://localhost:3000/api/addPokemon",
-                  { id: pokemonInfo?.id },
-                  {
-                    "Content-Type": "application/json",
-                    headers: { Authorization: `Bearer ${token}` },
-                  }
-                )
-                .then((res) => {})
-                .catch((res) => {
-                  console.log(res);
-                  setError(res.response.data.message);
-                  setErrorCode(res.response.status);
-                });
-            })
-            .catch((res) => {
-              console.log(res);
-              setError(res.response.data.message);
-              setErrorCode(res.response.status);
-            });
-        } else {
-          axios
-            .patch(
-              "http://localhost:3000/api/addPokemon",
-              { id: pokemonInfo?.id, name: pokemonInfo?.name },
-              {
-                "Content-Type": "application/json",
-                headers: { Authorization: `Bearer ${token}` },
-              }
-            )
-            .then((res) => {})
-            .catch((res) => {
-              if (res.response.data.message != undefined) {
-                setError(res.response.data.message);
-              }
-              setErrorCode(res.response.status);
-            });
-        }
-      })
-      .catch((res) => {
-        console.log(res);
-        if (res.response.data.message != undefined) {
-          setError(res.response.data.message);
-        }
-      });
-  };
+  //
 
   return (
     <div className="pokemon-card-container">
@@ -158,11 +94,6 @@ const PokemonComponent = ({ pokemon }) => {
             <p>Hauteur: {pokemonInfo?.height} </p>
             <p>Poids: {pokemonInfo?.weight}</p>
           </div>
-          <Button
-            variant="primary"
-            onClick={() => createPokedexAndAddPokemon(pokemonInfo)}>
-            Ajouter au pokédex
-          </Button>
 
           <h1 className="pokemon-logo">Pokemon Cards</h1>
           <h1 className="pokemon-logo">{pokemonInfo?.id}</h1>
