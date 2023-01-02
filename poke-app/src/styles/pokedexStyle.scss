@@ -45,6 +45,21 @@
   border-radius: 5%;
 }
 
+.pokedollar{
+  width: 10%;
+  position: absolute;
+  top: 4%;
+  left: 81%;
+  z-index: 1;
+}
+
+.pokedollar-number{
+  position: absolute;
+  left: 92%;
+  top: 3%;
+  font-size: xx-large;
+}
+
 .user-interface {
   position: absolute;
   left: 3%;

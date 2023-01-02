@@ -3,6 +3,7 @@ import pokedexx from "../assets/Pokedexx.png";
 import arrowsNext from "../assets/arrows-next.png";
 import arrowsPrevious from "../assets/arrows-previous.png";
 import pokebag from "../assets/pokebag.png"
+import pokedollar from "../assets/poke-dollar.jpg"
 import "../styles/homeStyle.scss";
 import "../styles/pokedexStyle.scss";
 import pokeball from "../assets/pokeball.png";
@@ -30,6 +31,9 @@ const PokedexComponent = ({
           alt="pokeballs"
           className="pokeball-2-pokedex"></img>
         <div className="background-pokedex">
+          
+          <img src={pokedollar} alt="pokedollar" className="pokedollar"></img><p className="pokedollar-number"> : </p> 
+
           <div>
             <img src={pokedexx} alt="pokedexx" className="pokedex"></img>
             <img
