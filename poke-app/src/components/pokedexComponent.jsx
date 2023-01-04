@@ -2,22 +2,28 @@ import React, { useEffect, useState } from "react";
 import pokedexx from "../assets/Pokedexx.png";
 import arrowsNext from "../assets/arrow-right.png";
 import arrowsPrevious from "../assets/arrow-left.png";
-import pokebag from "../assets/pokebag.png"
-import pokedollar from "../assets/poke-dollar.jpg"
+import pokebag from "../assets/pokebag.png";
+import pokedollar from "../assets/poke-dollar.jpg";
 import pokeball from "../assets/pokeball.png";
 import "../styles/header.scss";
 import "../styles/pokedexStyle.scss";
+import UseModal from "./useModal";
 const PokedexComponent = ({
   pokemon,
   capacity,
   secretCapacity,
   next,
   previous,
-  deletePokemon,
-  switchToFirstPokemon,
-  switchToLastPokemon,
   errorSearch,
+  getRandomPokemon,
+  coin,
+  imageModal,
+  error,
+  pokemonInfo,
+  imagePokedex,
 }) => {
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <div>
       {/* <div>
@@ -31,19 +37,24 @@ const PokedexComponent = ({
           alt="pokeballs"
           className="pokeball-2-pokedex"></img>
         <div className="background-pokedex">
-          
-          <img src={pokedollar} alt="pokedollar" className="pokedollar"></img><p className="pokedollar-number"> : </p> 
+          <img src={pokedollar} alt="pokedollar" className="pokedollar"></img>
+          {coin !== null ? (
+            <p className="pokedollar-number"> {coin} </p>
+          ) : (
+            <></>
+          )}
 
           <div>
             <img src={pokedexx} alt="pokedexx" className="pokedex"></img>
-            <img
+            {/* <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`}
               alt="pokemon"
-              className="pokemon-image"></img>
-          </div>
+              className="pokemon-image"></img> */}
 
-          <div className="user-interface">
-            <img src={pokebag} alt="pokebag" className="pokebag"></img>
+      {/* <div className="user-interface">
+            <div onClick={() => setModalShow(true)}>
+              <img src={pokebag} alt="pokebag" className="pokebag"></img>
+            </div>
 
             <div className="yellow-screen"></div>
           </div>
@@ -71,9 +82,7 @@ const PokedexComponent = ({
 
       {/* NOUVEAU POKEDEX */}
 
-
       <div className="background-pokedex">
-
         <div className="upper-screen"></div>
         <div className="upper-screen-content-top"></div>
         <div className="upper-screen-content-bottom"></div>
@@ -90,42 +99,71 @@ const PokedexComponent = ({
 
         <div className="bottom-part"></div>
         <div className="bottom-part-background"></div>
-        <div className="bottom-part-screen"></div>
+        <div className="bottom-part-screen">
+          {imagePokedex ? (
+            <img
+              src={imagePokedex}
+              alt="Pokemon"
+              className="imagePokemonInPokedex"></img>
+          ) : (
+            <></>
+          )}
+
+          {errorSearch ? <p>{errorSearch}</p> : <></>}
+          <p>{pokemonInfo?.name}</p>
+          {!pokemonInfo ? (
+            <></>
+          ) : (
+            <>
+              <p>{capacity()}</p>
+              <p>{secretCapacity()}</p>
+              {pokemonInfo?.types.length > 1 ? (
+                <div>
+                  {pokemonInfo?.types[0].type.name}
+                  {pokemonInfo?.types[1].type.name}
+                </div>
+              ) : (
+                <>{pokemonInfo?.types[0].type.name}</>
+              )}
+            </>
+          )}
+        </div>
 
         <div className="bottom-left-part">
-
-        <img src={pokebag} alt="pokebag" className="pokebag"></img>
-
+          <img
+            src={pokebag}
+            alt="pokebag"
+            className="pokebag"
+            onClick={() => {
+              setModalShow(true);
+            }}></img>
         </div>
         <div className="bottom-left-blue-button"></div>
         <div className="bottom-left-blue-button-light"></div>
 
         <div className="bottom-right-part"></div>
         <div className="bottom-right-background">
-        <img
+          <img
             src={arrowsNext}
             alt="arrow-next"
-            className="arrow-next">
-        </img>
+            className="arrow-next"
+            onClick={next}></img>
 
-        <img
+          <img
             src={arrowsPrevious}
             alt="arrow-left"
-            className="arrow-left">
-        </img>
-
+            className="arrow-left"
+            onClick={previous}></img>
         </div>
-
-
-
       </div>
-
-
-
-
-
-
-
+      <UseModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        getrandompokemon={getRandomPokemon}
+        error={error}
+        pokemoninfo={pokemon}
+        imagemodal={imageModal}
+      />
     </div>
   );
 };

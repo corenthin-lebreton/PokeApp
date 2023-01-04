@@ -1,9 +1,10 @@
 .header {
   background-color: red;
   height: 13vh;
+  width: 100vw;
 }
 
-.titre-home{
+.titre-home {
   position: absolute;
   left: 48%;
   top: 3.5%;
@@ -11,7 +12,7 @@
   font-weight: bold;
 }
 
-.titre-battle{
+.titre-battle {
   font-weight: bold;
   font-size: xx-large;
   position: absolute;
@@ -19,21 +20,19 @@
   top: 25px;
 }
 
-.pokeball-1-home{
+.pokeball-1-home {
   width: 2vw;
   position: absolute;
   left: 45%;
   top: 5%;
 }
 
-.pokeball-2-home{
+.pokeball-2-home {
   width: 2vw;
   position: absolute;
   right: 31%;
   top: 5%;
 }
-
-
 
 .logo-home {
   width: 14vw;
@@ -50,7 +49,7 @@
   margin-left: 30px;
 }
 
-.image-pokebattle{
+.image-pokebattle {
   width: 4vw;
   margin-left: 15px;
 }
@@ -67,21 +66,20 @@
   bottom: 4rem;
 }
 
-.button-next{
+.button-next {
   position: absolute;
   width: 10vw;
   left: 60%;
 }
 
-.button-previous{
+.button-previous {
   position: absolute;
   width: 10vw;
   right: 60%;
 }
 
-.button-logout{
+.button-logout {
   position: absolute;
   top: 0px;
   left: 15%;
 }
-

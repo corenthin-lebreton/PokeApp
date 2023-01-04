@@ -16,7 +16,7 @@
   font-weight: bold;
 }
 
-.upper-screen{
+.upper-screen {
   width: 30vw;
   height: 30vh;
   position: absolute;
@@ -26,43 +26,43 @@
   box-shadow: -9px 5px 1px #600405;
 }
 
-.upper-screen-content-top{
+.upper-screen-content-top {
   width: 12.5vw;
   height: 12vh;
   background-color: #870707;
   position: absolute;
   right: 36.2%;
-  top: 8% ;
+  top: 8%;
   border-top-left-radius: 10rem;
   border-top-right-radius: 10rem;
 }
 
-.upper-screen-content-bottom{
+.upper-screen-content-bottom {
   width: 12.5vw;
   height: 12vh;
   background-color: #870707;
   position: absolute;
   right: 36.2%;
-  top: 26% ;
+  top: 26%;
   border-bottom-left-radius: 10rem;
   border-bottom-right-radius: 10rem;
 }
 
-.upper-screen-content-big-middle-circle{
-  height: 20%; 
-	width: 10%; 
-	border-radius: 50%; 
+.upper-screen-content-big-middle-circle {
+  height: 20%;
+  width: 10%;
+  border-radius: 50%;
   position: absolute;
   top: 15%;
   left: 50.9%;
   z-index: 1;
-  background-color: #c00d0e
+  background-color: #c00d0e;
 }
 
-.upper-screen-content-little-middle-circle{
-  height: 12%; 
-	width: 5.5%; 
-	border-radius: 50%; 
+.upper-screen-content-little-middle-circle {
+  height: 12%;
+  width: 5.5%;
+  border-radius: 50%;
   position: absolute;
   top: 19%;
   left: 53.3%;
@@ -71,7 +71,7 @@
   background-color: #51ae60;
 }
 
-.between-screen{
+.between-screen {
   width: 51%;
   height: 8%;
   position: absolute;
@@ -82,7 +82,7 @@
   box-shadow: -10px 8px 0px #600405;
 }
 
-.between-screen-top-shadow{
+.between-screen-top-shadow {
   width: 51%;
   height: 1%;
   position: absolute;
@@ -93,7 +93,7 @@
   z-index: 1;
 }
 
-.between-screen-bottom-shadow{
+.between-screen-bottom-shadow {
   width: 51%;
   height: 1%;
   position: absolute;
@@ -104,7 +104,7 @@
   z-index: 1;
 }
 
-.between-screen-left-square{
+.between-screen-left-square {
   width: 3vw;
   height: 6vh;
   position: absolute;
@@ -113,7 +113,7 @@
   background-color: #870707;
 }
 
-.between-screen-middle-square{
+.between-screen-middle-square {
   width: 3vw;
   height: 6vh;
   position: absolute;
@@ -122,7 +122,7 @@
   background-color: #870707;
 }
 
-.between-screen-right-square{
+.between-screen-right-square {
   width: 3vw;
   height: 6vh;
   position: absolute;
@@ -132,7 +132,7 @@
   border: 2px solid #600405;
 }
 
-.bottom-part{
+.bottom-part {
   width: 30.2vw;
   height: 30vh;
   position: absolute;
@@ -142,8 +142,8 @@
   box-shadow: -11px 7px 0px #600405;
 }
 
-.bottom-part-background{
-  width: 25vw ;
+.bottom-part-background {
+  width: 25vw;
   height: 25vh;
   background-color: #424242;
   position: absolute;
@@ -152,8 +152,8 @@
   border-radius: 10px;
 }
 
-.bottom-part-screen{
-  width: 23vw ;
+.bottom-part-screen {
+  width: 23vw;
   height: 21vh;
   background-color: #ffff;
   position: absolute;
@@ -161,8 +161,8 @@
   right: 29.3%;
   border-radius: 10px;
   border: 5px solid #b0b0b0;
-} 
- .bottom-left-part{
+}
+.bottom-left-part {
   width: 10.6vw;
   height: 29.6vh;
   border-bottom-left-radius: 2rem;
@@ -172,12 +172,12 @@
   background-color: #870707;
   border: 2px solid #600405;
   box-shadow: -10px 7px 1px #600405;
- }
+}
 
- .bottom-left-blue-button{
-  height: 8%; 
-	width: 4%; 
-	border-radius: 50%; 
+.bottom-left-blue-button {
+  height: 8%;
+  width: 4%;
+  border-radius: 50%;
   position: absolute;
   top: 80%;
   left: 29%;
@@ -185,9 +185,9 @@
   border: 8px solid #70e2f7;
   background-color: #70e2f7;
   box-shadow: 0px 0px 10px #000000;
- }
+}
 
- .bottom-left-blue-button-light{
+.bottom-left-blue-button-light {
   width: 2vw;
   height: 2vh;
   position: absolute;
@@ -196,9 +196,9 @@
   z-index: 1;
   border-radius: 30%;
   background-color: #9ff0fa;
- }
+}
 
- .bottom-right-part{
+.bottom-right-part {
   width: 7vw;
   height: 15vh;
   background-color: #870707;
@@ -208,9 +208,9 @@
   border-top-right-radius: 80%;
   border-bottom-right-radius: 80%;
   box-shadow: -11px 7px 0px #600405;
- }
+}
 
- .bottom-right-background{
+.bottom-right-background {
   width: 6vw;
   height: 10vh;
   background-color: #424242;
@@ -219,36 +219,36 @@
   bottom: 10.5%;
   border-top-right-radius: 80%;
   border-bottom-right-radius: 80%;
- }
+}
 
- .arrow-next{
+.arrow-next {
   width: 42%;
   right: 10%;
   position: absolute;
   top: -1%;
- }
+}
 
- .arrow-left{
+.arrow-left {
   width: 42%;
   left: 6%;
   position: absolute;
   top: -1%;
- }
+}
 
- .pokebag{
+.pokebag {
   position: absolute;
-  top:20%;
+  top: 20%;
   left: 25%;
   width: 5vw;
   cursor: pointer;
 }
 
-
-
-
-
-
-
+.imagePokemonInPokedex {
+  width: 10vw;
+  position: absolute;
+  top: 20%;
+  left: 35%;
+}
 
 // .no-pokemon {
 //   color: white;
@@ -357,8 +357,6 @@
 //   box-shadow: -5px 0px 0px #000000;
 //   cursor: pointer;
 // }
-
-
 
 // .yellow-screen {
 //   position: absolute;
