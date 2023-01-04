@@ -92,7 +92,11 @@ const PokedexComponent = ({
         <div className="bottom-part-background"></div>
         <div className="bottom-part-screen"></div>
 
-        <div className="bottom-left-part"></div>
+        <div className="bottom-left-part">
+
+        <img src={pokebag} alt="pokebag" className="pokebag"></img>
+
+        </div>
         <div className="bottom-left-blue-button"></div>
         <div className="bottom-left-blue-button-light"></div>
 
@@ -109,7 +113,7 @@ const PokedexComponent = ({
             alt="arrow-left"
             className="arrow-left">
         </img>
-        
+
         </div>
 
 

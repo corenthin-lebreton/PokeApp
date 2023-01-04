@@ -129,6 +129,7 @@
   top: 45%;
   right: 26%;
   background-color: #870707;
+  border: 2px solid #600405;
 }
 
 .bottom-part{
@@ -233,6 +234,14 @@
   position: absolute;
   top: -1%;
  }
+
+ .pokebag{
+  position: absolute;
+  top:20%;
+  left: 25%;
+  width: 5vw;
+  cursor: pointer;
+}
 
 
 
@@ -349,13 +358,7 @@
 //   cursor: pointer;
 // }
 
-// .pokebag{
-//   position: absolute;
-//   top: 45%;
-//   left: 10%;
-//   width: 5vw;
-//   cursor: pointer;
-// }
+
 
 // .yellow-screen {
 //   position: absolute;
