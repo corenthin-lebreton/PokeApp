@@ -8,12 +8,21 @@
   left: 48%;
   top: 3.5%;
   font-size: xx-large;
+  font-weight: bold;
+}
+
+.titre-battle{
+  font-weight: bold;
+  font-size: xx-large;
+  position: absolute;
+  right: 23%;
+  top: 25px;
 }
 
 .pokeball-1-home{
   width: 2vw;
   position: absolute;
-  left: 43.8%;
+  left: 45%;
   top: 5%;
 }
 
@@ -23,6 +32,8 @@
   right: 31%;
   top: 5%;
 }
+
+
 
 .logo-home {
   width: 14vw;
@@ -66,5 +77,11 @@
   position: absolute;
   width: 10vw;
   right: 60%;
+}
+
+.button-logout{
+  position: absolute;
+  top: 0px;
+  left: 15%;
 }
 

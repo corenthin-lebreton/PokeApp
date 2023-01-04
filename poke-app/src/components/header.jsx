@@ -7,6 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 
+
 const Header = ({ setInputSearch, isSearchingOnPokedex, search }) => {
   const logOutUser = () => {
     localStorage.removeItem("token");

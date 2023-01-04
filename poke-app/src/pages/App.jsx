@@ -4,6 +4,7 @@ import Home from "./home";
 import Login from "../components/loginComponent";
 import Register from "../components/registerComponent";
 import Pokedex from "./pokedex";
+import Pokebattle from "./pokebattle";
 function App() {
   const navigate = useNavigate();
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/pokedex" element={<Pokedex />} />
+        <Route path="/pokebattle" element={<Pokebattle />} />
       </Routes>
     </div>
   );

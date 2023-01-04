@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import PokemonComponent from "../components/pokemonComponent";
-import "../styles/homeStyle.scss";
+import "../styles/header.scss";
 import Header from "../components/header";
 import pokeball from "../assets/pokeball.png";
 

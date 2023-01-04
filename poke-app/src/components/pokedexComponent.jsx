@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import pokedexx from "../assets/Pokedexx.png";
-import arrowsNext from "../assets/arrows-next.png";
-import arrowsPrevious from "../assets/arrows-previous.png";
+import arrowsNext from "../assets/arrow-right.png";
+import arrowsPrevious from "../assets/arrow-left.png";
 import pokebag from "../assets/pokebag.png"
 import pokedollar from "../assets/poke-dollar.jpg"
-import "../styles/homeStyle.scss";
-import "../styles/pokedexStyle.scss";
 import pokeball from "../assets/pokeball.png";
+import "../styles/header.scss";
+import "../styles/pokedexStyle.scss";
 const PokedexComponent = ({
   pokemon,
   capacity,
@@ -20,7 +20,7 @@ const PokedexComponent = ({
 }) => {
   return (
     <div>
-      <div>
+      {/* <div>
         <p className="titre-pokedex">Voici votre Pokedex ! </p>
         <img
           src={pokeball}
@@ -67,7 +67,61 @@ const PokedexComponent = ({
             alt="arrows-previous"
             className="arrows-previous"></img>
         </div>
+      </div> */}
+
+      {/* NOUVEAU POKEDEX */}
+
+
+      <div className="background-pokedex">
+
+        <div className="upper-screen"></div>
+        <div className="upper-screen-content-top"></div>
+        <div className="upper-screen-content-bottom"></div>
+        <div className="upper-screen-content-big-middle-circle"></div>
+        <div className="upper-screen-content-little-middle-circle"></div>
+        <div className="upper-screen-content-little-middle-green-circle"></div>
+
+        <div className="between-screen"></div>
+        <div className="between-screen-top-shadow"></div>
+        <div className="between-screen-bottom-shadow"></div>
+        <div className="between-screen-left-square"></div>
+        <div className="between-screen-middle-square"></div>
+        <div className="between-screen-right-square"></div>
+
+        <div className="bottom-part"></div>
+        <div className="bottom-part-background"></div>
+        <div className="bottom-part-screen"></div>
+
+        <div className="bottom-left-part"></div>
+        <div className="bottom-left-blue-button"></div>
+        <div className="bottom-left-blue-button-light"></div>
+
+        <div className="bottom-right-part"></div>
+        <div className="bottom-right-background">
+        <img
+            src={arrowsNext}
+            alt="arrow-next"
+            className="arrow-next">
+        </img>
+
+        <img
+            src={arrowsPrevious}
+            alt="arrow-left"
+            className="arrow-left">
+        </img>
+        
+        </div>
+
+
+
       </div>
+
+
+
+
+
+
+
     </div>
   );
 };

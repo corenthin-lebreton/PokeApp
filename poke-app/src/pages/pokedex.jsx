@@ -2,7 +2,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import React, { useEffect, useState } from "react";
-import "../styles/homeStyle.scss";
+import "../styles/header.scss";
 import "../styles/pokedexStyle.scss";
 import PokedexComponent from "../components/pokedexComponent";
 import Header from "../components/header";
