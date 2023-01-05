@@ -110,23 +110,39 @@ const PokedexComponent = ({
           )}
 
           {errorSearch ? <p>{errorSearch}</p> : <></>}
-          <p>{pokemonInfo?.name}</p>
+          <p className="pokemon-name-pokedex">{pokemonInfo?.name}</p>
           {!pokemonInfo ? (
             <></>
           ) : (
             <>
-              <p>{capacity()}</p>
-              <p>{secretCapacity()}</p>
+              <p className="pokemon-capacity-pokedex"> Capacité : {capacity()}</p>
+              <h1 className="pokemon-id-pokedex">No. {pokemonInfo?.id}</h1>
+              <p className="pokemon-height-pokedex">Hauteur: {pokemonInfo?.height} </p>
+              <p className="pokemon-width-pokedex">Poids: {pokemonInfo?.weight}</p>
+              <p className="pokemon-secret-capacity-pokedex">Capacité secrète : {secretCapacity()}</p>
               {pokemonInfo?.types.length > 1 ? (
                 <div>
-                  {pokemonInfo?.types[0].type.name}
-                  {pokemonInfo?.types[1].type.name}
+              <div className="pokemon-type-1-pokedex">
+                Types : {pokemonInfo?.types[0].type.name} - {pokemonInfo?.types[1].type.name}
+              </div>
+              {/* <div className="pokemon-type-2-pokedex">
+                {pokemonInfo?.types[1].type.name}
+              </div> */}
                 </div>
               ) : (
-                <>{pokemonInfo?.types[0].type.name}</>
+                <p className="pokemon-solo-type-pokedex"> Types : {pokemonInfo?.types[0].type.name}</p>
               )}
             </>
           )}
+
+              
+          <div className="ligne-separation-1"></div>
+          <div className="ligne-separation-2"></div>
+          <div className="ligne-separation-3"></div>
+          <div className="ligne-separation-4"></div>
+          <div className="ligne-separation-5"></div>
+
+
         </div>
 
         <div className="bottom-left-part">
