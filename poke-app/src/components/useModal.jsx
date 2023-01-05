@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-
+import pokedollar from "../assets/poke-dollar.jpg";
 const UseModal = (props) => {
   return (
     <>
@@ -11,12 +11,15 @@ const UseModal = (props) => {
         imagemodal={props.imagemodal}
         pokemoninfo={props.pokemoninfo}
         error={props.error}
+        coin={props.coin}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered>
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
             Buy your Pokemon
+            <img src={pokedollar}></img>
+            <p>{props.coin}</p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

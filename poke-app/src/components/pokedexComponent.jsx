@@ -163,6 +163,7 @@ const PokedexComponent = ({
         error={error}
         pokemoninfo={pokemon}
         imagemodal={imageModal}
+        coin={coin}
       />
     </div>
   );
