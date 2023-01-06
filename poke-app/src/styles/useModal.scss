@@ -14,11 +14,15 @@
 .modal-title{
     font-size: large;
     position: relative;
-    left: 35%;
+    left: 37%;
 }
 
 .modal-body{
     height: 40vh;
+    background-image: url("../assets/pikachu-surf.jpg");
+    background-position-y: 50% ;
+    background-position-x: 50% ;
+    background-size: 134%;
 }
 
 .button-buy{
@@ -36,6 +40,7 @@
 .obtain-pokemon-description{
     position: absolute;
     font-size: large;
+    font-weight: bold;
     top: 80%;
-    left: 40%;
+    left: 38%;
 }

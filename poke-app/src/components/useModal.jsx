@@ -27,7 +27,7 @@ const UseModal = (props) => {
           {props.imagemodal && !props.error ? (
             <div>
               <img className="obtain-pokemon" src={props.imagemodal} ></img>
-              <p className="obtain-pokemon-description">Wow ! you got {props.pokemoninfo.name}</p>
+              <p className="obtain-pokemon-description">Super tu a obtenu :  {props.pokemoninfo.name}</p>
             </div>
           ) : (
             <p>{props.error}</p>
