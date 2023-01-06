@@ -105,16 +105,16 @@ const PokedexComponent = ({
               src={imagePokedex}
               alt="Pokemon"
               className="imagePokemonInPokedex"></img>
-          ) : (
-            <></>
-          )}
+              ) : (
+                <></>
+                )}
 
           {errorSearch ? <p>{errorSearch}</p> : <></>}
           <p className="pokemon-name-pokedex">{pokemonInfo?.name}</p>
           {!pokemonInfo ? (
             <></>
-          ) : (
-            <>
+            ) : (
+              <>
               <p className="pokemon-capacity-pokedex"> Capacité : {capacity()}</p>
               <h1 className="pokemon-id-pokedex">No. {pokemonInfo?.id}</h1>
               <p className="pokemon-height-pokedex">Hauteur: {pokemonInfo?.height} </p>
@@ -131,7 +131,7 @@ const PokedexComponent = ({
                 </div>
               ) : (
                 <p className="pokemon-solo-type-pokedex"> Types : {pokemonInfo?.types[0].type.name}</p>
-              )}
+                )}
             </>
           )}
 
@@ -180,8 +180,8 @@ const PokedexComponent = ({
         pokemoninfo={pokemon}
         imagemodal={imageModal}
         coin={coin}
-      />
-    </div>
+        />
+        </div>
   );
 };
 
