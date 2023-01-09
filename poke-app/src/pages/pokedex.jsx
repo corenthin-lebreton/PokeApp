@@ -116,6 +116,7 @@ const Pokedex = () => {
   };
 
   //---------------------------------------------------------------------------------------------------
+  //---------------------------------Get coin of user------------------------------------------------------------------
   const getCoin = async () => {
     await axios
       .get("http://localhost:3000/api/getCoin", {
@@ -133,6 +134,9 @@ const Pokedex = () => {
   useEffect(() => {
     getCoin();
   }, [coin]);
+  //---------------------------------------------------------------------------------------------------
+
+  //----------------------------Get all Pokemon-----------------------------------------------------------------------
 
   useEffect(() => {
     const fetchData = async () => {
@@ -143,7 +147,7 @@ const Pokedex = () => {
     };
     fetchData();
   }, []);
-
+  //------------------------Verify if pokedex exists create it or not and send pokemon to it---------------------------------------------------------------------------
   const sendPokemonToApi = async () => {
     await axios
       .get("http://localhost:3000/api/pokedextoadd", {
@@ -209,6 +213,9 @@ const Pokedex = () => {
       sendPokemonToApi();
     }
   }, [pokemonInfo]);
+  //---------------------------------------------------------------------------------------------------
+
+  //----------------------Main function to get a random pokemon-----------------------------------------------------------------------------
 
   const getRandomPokemon = async () => {
     if (coin > 0) {
@@ -239,8 +246,9 @@ const Pokedex = () => {
       setError("Désolé vous n'avez plus de pokedollarz");
     }
   };
+  //---------------------------------------------------------------------------------------------------
 
-  //----------------------------------------------------------------------------------------------------
+  //---------------------------------------------Render-------------------------------------------------------
   return (
     <div>
       <div>
@@ -251,7 +259,6 @@ const Pokedex = () => {
         <Header setInputSearch={setInputSearch} search={search} />
         <PokedexComponent
           error={error}
-          // errorCode={errorCode}
           pokemon={pokemonInfo}
           pokemonInfo={pokemonInfoToDisplay}
           coin={coin}
