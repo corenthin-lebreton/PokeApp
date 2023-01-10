@@ -5,14 +5,17 @@ import CreateRoomModal from "../components/createRoomModal";
 import GameRoomTable from "../components/gameRoomTable";
 import axios from "axios";
 import BattleArena from "../components/battleArena";
+import CheckPasswordModal from "../components/checkPasswordModal";
 const Pokebattle = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [modalShow, setModalShow] = useState(false);
-  const [isPrivate, setIsPrivate] = useState();
+  const [isPrivate, setIsPrivate] = useState(false);
   const token = localStorage.getItem("token");
   const [roomInfo, setRoomInfo] = useState();
   const [isCreated, setIsCreated] = useState(false);
   const [roomDisplay, setRoomDisplay] = useState([]);
+  const [handlePassword, setHandlePassword] = useState("");
+  const [modalPassword, setModalPassword] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +46,7 @@ const Pokebattle = () => {
       const res = await axios.post(
         "http://localhost:3000/api/createRoom",
         {
-          name: name,
+          roomName: name,
           isPrivate: isPrivate,
           password: password,
         },
@@ -62,8 +65,8 @@ const Pokebattle = () => {
       const res = await axios.post(
         "http://localhost:3000/api/createRoom",
         {
-          name: name,
-          isPrivate: false,
+          roomName: name,
+          isPrivate: isPrivate,
         },
 
         {
@@ -77,7 +80,18 @@ const Pokebattle = () => {
     }
   };
 
-  console.log(roomInfo);
+  const addPassword = () => {
+    console.log("hello");
+    setModalPassword(!modalPassword);
+  };
+
+  const joinRoom = () => {
+    console.log("Room joined");
+  };
+
+  const handlePasswordChange = (e) => {
+    setHandlePassword(e.target.value);
+  };
 
   return (
     <div>
@@ -85,7 +99,11 @@ const Pokebattle = () => {
       {!isCreated ? (
         <>
           <Button onClick={() => setModalShow(true)}>Create a game</Button>
-          <GameRoomTable roomDisplay={roomDisplay} />
+          <GameRoomTable
+            roomDisplay={roomDisplay}
+            addPassword={addPassword}
+            joinRoom={joinRoom}
+          />
         </>
       ) : (
         <BattleArena />
@@ -98,6 +116,16 @@ const Pokebattle = () => {
         checkboxisprivate={checkboxIsPrivate}
         createroom={createRoomGame}
       />
+
+      {modalPassword ? (
+        <CheckPasswordModal
+          show={modalPassword}
+          onHide={() => setModalPassword(false)}
+          handlepasswordchange={handlePasswordChange}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
