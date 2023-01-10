@@ -24,12 +24,9 @@ const Pokebattle = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log(result);
       setRoomDisplay(result.data);
     };
     fetchData();
-    console.log(roomDisplay);
   }, [roomInfo]);
 
   const checkboxIsPrivate = () => {
@@ -80,17 +77,23 @@ const Pokebattle = () => {
     }
   };
 
-  const addPassword = () => {
-    console.log("hello");
-    setModalPassword(!modalPassword);
-  };
+  const joinRoom = (id) => {
+    console.log(id);
 
-  const joinRoom = () => {
-    console.log("Room joined");
+    const room = roomDisplay.filter((room) => room.id === id);
+    console.log(room);
+
+    if (room[0].passwordIsRequired) {
+      console.log(true);
+      setModalPassword(!modalPassword);
+    } else {
+      console.log(false);
+    }
   };
 
   const handlePasswordChange = (e) => {
     setHandlePassword(e.target.value);
+    console.log(e.target.value);
   };
 
   return (
@@ -99,11 +102,7 @@ const Pokebattle = () => {
       {!isCreated ? (
         <>
           <Button onClick={() => setModalShow(true)}>Create a game</Button>
-          <GameRoomTable
-            roomDisplay={roomDisplay}
-            addPassword={addPassword}
-            joinRoom={joinRoom}
-          />
+          <GameRoomTable roomDisplay={roomDisplay} joinRoom={joinRoom} />
         </>
       ) : (
         <BattleArena />

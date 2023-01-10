@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
 
-const GameRoomTable = ({ roomDisplay, addPassword, joinRoom }) => {
+const GameRoomTable = ({ roomDisplay, joinRoom }) => {
   return (
     <div>
       <Table striped bordered hover size="sm" variant="light">
@@ -14,7 +14,6 @@ const GameRoomTable = ({ roomDisplay, addPassword, joinRoom }) => {
           </tr>
         </thead>
         {roomDisplay.map((room) => {
-          console.log(room.passwordIsRequired);
           return (
             <tbody key={room.id}>
               <tr>
@@ -22,10 +21,7 @@ const GameRoomTable = ({ roomDisplay, addPassword, joinRoom }) => {
                 <td>{room.currentPlayers} / 2</td>
                 {room.passwordIsRequired ? <td>True</td> : <td>False</td>}
                 <td>
-                  <Button
-                    onClick={room.passwordIsRequired ? addPassword : joinRoom}>
-                    Join
-                  </Button>
+                  <Button onClick={() => joinRoom(room.id)}>Join</Button>
                 </td>
               </tr>
             </tbody>
