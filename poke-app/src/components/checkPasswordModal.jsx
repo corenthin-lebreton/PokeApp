@@ -8,6 +8,7 @@ const CheckPasswordModal = (props) => {
       <Modal
         show={props.show}
         onHide={props.onhide}
+        error={props.error}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered>
@@ -24,7 +25,11 @@ const CheckPasswordModal = (props) => {
             placeholder="Enter password"
             onChange={(e) => props.handlepasswordchange(e)}
           />
-          <Button variant="warning">Join</Button>
+          <Button variant="warning" onClick={props.joinroombypassword}>
+            Join
+          </Button>
+
+          {props.error ? <p>{props.error}</p> : <></>}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="warning" onClick={props.onHide}>

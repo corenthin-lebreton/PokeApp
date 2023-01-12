@@ -23,7 +23,6 @@ const Header = ({ setInputSearch, isSearchingOnPokedex, search }) => {
     };
     fetchData();
   }, []);
-  console.log(userName);
   const logOutUser = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";

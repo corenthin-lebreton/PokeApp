@@ -16,6 +16,10 @@ const Pokebattle = () => {
   const [roomDisplay, setRoomDisplay] = useState([]);
   const [handlePassword, setHandlePassword] = useState("");
   const [modalPassword, setModalPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [roomId, setRoomId] = useState();
+  const [isJoined, setIsJoined] = useState(false);
+  //get all existed room
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,20 +28,14 @@ const Pokebattle = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(result.data);
       setRoomDisplay(result.data);
     };
     fetchData();
   }, [roomInfo]);
+  //-----------------------------------------------------------------------------
 
-  const checkboxIsPrivate = () => {
-    setIsChecked(!isChecked);
-    if (isChecked) {
-      setIsPrivate(false);
-    } else {
-      setIsPrivate(true);
-    }
-  };
-
+  //Create a public or private room
   const createRoomGame = async (name, password) => {
     if (isPrivate) {
       const res = await axios.post(
@@ -77,29 +75,96 @@ const Pokebattle = () => {
     }
   };
 
-  const joinRoom = (id) => {
+  //------------------------------------------------------------------------------------
+
+  //verify if its private or public
+
+  const checkboxIsPrivate = () => {
+    setIsChecked(!isChecked);
+    if (isChecked) {
+      setIsPrivate(false);
+    } else {
+      setIsPrivate(true);
+    }
+  };
+
+  //------------------------------------------------------------------------------------
+
+  //function to join rooms
+  const joinRoom = async (id) => {
     console.log(id);
+    setRoomId(id);
 
     const room = roomDisplay.filter((room) => room.id === id);
     console.log(room);
 
     if (room[0].passwordIsRequired) {
-      console.log(true);
       setModalPassword(!modalPassword);
     } else {
-      console.log(false);
+      try {
+        const res = await axios.post(
+          "http://localhost:3000/api/joinRoom",
+          {
+            id: roomId,
+            private: false,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        if (res) {
+          setIsJoined(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
+  //------------------------------------------------------------------------------------
+
+  //function to handle password input
+
   const handlePasswordChange = (e) => {
     setHandlePassword(e.target.value);
-    console.log(e.target.value);
   };
+
+  //------------------------------------------------------------------------------------
+
+  //function to join room by password only
+
+  const joinRoomByPassword = async () => {
+    console.log(handlePassword);
+    if (!handlePassword) {
+      setError("Password is required");
+      console.log(error);
+    } else {
+      try {
+        const res = await axios.post(
+          "http://localhost:3000/api/joinRoom",
+          {
+            password: handlePassword,
+            id: roomId,
+            private: true,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        console.log(res);
+        setIsJoined(true);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  //------------------------------------------------------------------------------------
 
   return (
     <div>
       <HeaderBattle />
-      {!isCreated ? (
+      {!isCreated && !isJoined ? (
         <>
           <Button onClick={() => setModalShow(true)}>Create a game</Button>
           <GameRoomTable roomDisplay={roomDisplay} joinRoom={joinRoom} />
@@ -121,6 +186,8 @@ const Pokebattle = () => {
           show={modalPassword}
           onHide={() => setModalPassword(false)}
           handlepasswordchange={handlePasswordChange}
+          joinroombypassword={joinRoomByPassword}
+          error={error}
         />
       ) : (
         <></>
