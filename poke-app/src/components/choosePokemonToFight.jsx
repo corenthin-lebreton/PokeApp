@@ -8,11 +8,12 @@ const ChoosePokemonToFight = (props) => {
   const [lengthPokemonChose, setLengthPokemonChose] = useState(0);
   const [pokemonIndex, setPokemonIndex] = useState(0);
   const [error, setError] = useState();
-
-  console.log(props.pokemon);
+  const token = localStorage.getItem("token");
   useEffect(() => {
     const getPokemonInfo = async () => {
       try {
+        console.log(props.pokemon);
+        console.log(pokemonIndex);
         const res = await axios.get(
           `https://pokeapi.co/api/v2/pokemon/${props.pokemon[pokemonIndex]}`
         );
@@ -48,15 +49,36 @@ const ChoosePokemonToFight = (props) => {
       }
     }
   };
-  console.log(chosePokemon);
+
+  useEffect(() => {
+    if (lengthPokemonChose === 6) {
+      const sendPokemonChose = async () => {
+        try {
+          await axios.post(
+            "http://localhost:3000/api/addPokemonForFight",
+            {
+              pokemonsForFight: chosePokemon,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+        } catch (error) {
+          console.log(error);
+        }
+        props.setmodalshow(false);
+        props.setispokemonsent(true);
+      };
+      sendPokemonChose();
+    }
+  }, [lengthPokemonChose]);
   return (
     <Modal
       show={props.show}
       onHide={props.onhide}
       pokemon={props.pokemon}
-      pokemoninfo={props.pokemoninfo}
-      pokemonindex={props.pokemonindex}
-      setpokemonindex={props.setpokemonindex}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered>

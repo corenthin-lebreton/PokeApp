@@ -7,7 +7,10 @@ const BattleArena = () => {
   const [isPlayerJoined, setIsPlayerJoined] = useState(false);
   const [pokemon, setPokemon] = useState([]);
   const [modalShow, setModalShow] = useState(true);
+  const [isPlayerSendPokemonsList, setIsPlayerSendPokemonsList] =
+    useState(false);
 
+  const [isPokemonSent, setIsPokemonSent] = useState(false);
   useEffect(() => {
     const checkPlayersJoined = async () => {
       try {
@@ -55,6 +58,48 @@ const BattleArena = () => {
     fetchPokemon();
   }, []);
 
+  useEffect(() => {
+    const asyncForPlayerSendingPokemonsList = async () => {
+      try {
+        while (true) {
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          const checkIfPlayerSendPokemonsList = async () => {
+            try {
+              const res = await axios.get(
+                "http://localhost:3000/api/isPlayerSendListPokemons",
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              );
+              console.log(res.data);
+              if (res.data.message === "ennemy is ready") {
+                return true;
+              } else {
+                return false;
+              }
+            } catch (error) {
+              console.log(error);
+            }
+
+            return false;
+          };
+
+          if (await checkIfPlayerSendPokemonsList()) {
+            break;
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (isPokemonSent) {
+      asyncForPlayerSendingPokemonsList();
+    }
+  }, [isPokemonSent]);
+
   return (
     <div>
       <div className="terrain">
@@ -78,6 +123,8 @@ const BattleArena = () => {
         <ChoosePokemonToFight
           pokemon={pokemon}
           show={modalShow}
+          setispokemonsent={setIsPokemonSent}
+          setmodalshow={setModalShow}
           onHide={() => setModalShow(false)}
         />
       ) : null}
