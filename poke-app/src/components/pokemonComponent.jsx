@@ -89,10 +89,10 @@ const PokemonComponent = ({ pokemon }) => {
             </span>
           )}
           <div className="pokemon-stats">
-            <p>Capacité :{capacity()}</p>
-            <p>Capacité secrète : {secretCapacity()}</p>
-            <p>Hauteur: {pokemonInfo?.height} </p>
-            <p>Poids: {pokemonInfo?.weight}</p>
+            <p>Capacity :{capacity()}</p>
+            <p>Secret capacity : {secretCapacity()}</p>
+            <p>Height: {pokemonInfo?.height} </p>
+            <p>Weight: {pokemonInfo?.weight}</p>
           </div>
 
           <h1 className="pokemon-logo">Pokemon Cards</h1>

@@ -58,7 +58,7 @@ const Header = ({
           <></>
         )}
 
-        <h1 className="title-header">Welcome {userName.username}</h1>
+        <h1 className="title-user">Connected as : {userName.username}</h1>
         <Navbar bg="none" expand="lg" className="navbar">
           <Form className="d-flex">
             <Form.Control
@@ -68,12 +68,12 @@ const Header = ({
               aria-label="Search"
               onChange={(e) => setInputSearch(e.target.value)}
             />
-            <Button className="btn btn-warning" onClick={search}>
+            <Button className="btn-search" variant="warning" onClick={search}>
               Search
             </Button>
           </Form>
 
-          <Button variant="secondary" onClick={logOutUser}>
+          <Button className="btn-logout" variant="secondary" onClick={logOutUser}>
             Logout
           </Button>
         </Navbar>

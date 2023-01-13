@@ -12,6 +12,20 @@
     top: 4.5%;
 }
 
+.pokeball-1-pokebattle {
+    width: 2vw;
+    position: absolute;
+    left: 48%;
+    top: 5%;
+  }
+  
+  .pokeball-2-pokebattle {
+    width: 2vw;
+    position: absolute;
+    right: 26%;
+    top: 5%;
+  }
+
 .terrain{
     background-color: rgb(180, 180, 136);
     width: 65rem;
@@ -161,4 +175,9 @@
     background-color: grey;
 	border-radius: 40%; 
     position: absolute;
+}
+
+.button-logout{
+    position: absolute;
+    top: 0%;
 }

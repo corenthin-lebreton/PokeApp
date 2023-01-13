@@ -50,7 +50,7 @@ const HeaderBattle = () => {
               className="image-pokebattle"></img>
           </a>
 
-          <p className="titre-battle">Combattez d'autre dresseur !</p>
+          <p className="titre-battle">Fight other Trainer !</p>
 
           <img
             src={pokeball}
@@ -61,7 +61,7 @@ const HeaderBattle = () => {
             alt="pokeballs"
             className="pokeball-2-pokebattle"></img>
 
-          <h1 className="title-header">Welcome {userName.username}</h1>
+          <h1 className="title-user">Connected as : {userName.username}</h1>
 
           <Navbar bg="none" expand="lg" className="navbar">
             <Button

@@ -4,6 +4,7 @@ import "../styles/header.scss";
 import "../styles/pokedexStyle.scss";
 import PokedexComponent from "../components/pokedexComponent";
 import Header from "../components/header";
+import pokeball from "../assets/pokeball.png";
 
 const Pokedex = () => {
   const [error, setError] = useState(null);
@@ -256,7 +257,7 @@ const Pokedex = () => {
   return (
     <div>
       <div>
-        <p className="titre-pokedex">Voici votre Pokedex ! </p>
+        <p className="titre-pokedex">Your Pokedex !</p>
       </div>
 
       <div>

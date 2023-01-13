@@ -18,7 +18,7 @@ const UseModal = (props) => {
         centered>
         <Modal.Header>
           <Modal.Title className="modal-title" id="contained-modal-title-vcenter">
-            Achetez vos Pokemons ! 
+            Get your Pokemon ! 
           </Modal.Title>
           <img className="pokedollar" src={pokedollar}></img>
           <p className="pokedollar-number">: {props.coin}</p>
@@ -27,7 +27,7 @@ const UseModal = (props) => {
           {props.imagemodal && !props.error ? (
             <div>
               <img className="obtain-pokemon" src={props.imagemodal} ></img>
-              <p className="obtain-pokemon-description">Super tu a obtenu :  {props.pokemoninfo.name}</p>
+              <p className="obtain-pokemon-description">Nice ! You obtain :  {props.pokemoninfo.name}</p>
             </div>
           ) : (
             <p>{props.error}</p>

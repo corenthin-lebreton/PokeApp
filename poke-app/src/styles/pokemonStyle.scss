@@ -8,6 +8,8 @@ body {
 }
 
 .pokemon-card-container {
+  position: relative;
+  top: 8%;
   background: linear-gradient(to right, rgb(215, 70, 41), rgb(148, 4, 4));
   width: 350px;
   height: auto;
@@ -70,3 +72,4 @@ body {
 .button-add-pokedex{
   margin-left: 73px;
 }
+

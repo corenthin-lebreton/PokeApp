@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import "../styles/modal-battle.scss";
 const CreateRoomModal = (props) => {
   const [roomName, setRoomName] = useState("");
   const [password, setPassword] = useState("");
@@ -15,26 +16,25 @@ const CreateRoomModal = (props) => {
         centered>
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-            Create your room
+            Create your room ! 
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="background-modal-create">
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>Room Name</Form.Label>
               <Form.Control
+                className="form-create"
                 type="text"
-                placeholder="Enter a room name"
+                placeholder="Enter your room name"
                 onChange={(e) => setRoomName(e.target.value)}
               />
             </Form.Group>
 
             {props.ischecked ? (
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Password"
+                  placeholder="Enter a password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Group>
@@ -43,20 +43,22 @@ const CreateRoomModal = (props) => {
             )}
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check
+                className="private-button"
                 type="checkbox"
                 label="Private game"
                 onChange={props.checkboxisprivate}
               />
             </Form.Group>
             <Button
-              variant="primary"
+              className="create-game"
+              variant="warning"
               onClick={() => props.createroom(roomName, password)}>
-              Submit
+              Create a game
             </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button className="create-game-close" variant="warning" onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     </>

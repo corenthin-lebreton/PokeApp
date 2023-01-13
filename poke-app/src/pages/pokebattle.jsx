@@ -6,6 +6,8 @@ import GameRoomTable from "../components/gameRoomTable";
 import axios from "axios";
 import BattleArena from "../components/battleArena";
 import CheckPasswordModal from "../components/checkPasswordModal";
+import "../styles/lobby-battle.scss"
+
 const Pokebattle = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [modalShow, setModalShow] = useState(false);
@@ -167,7 +169,7 @@ const Pokebattle = () => {
       <HeaderBattle />
       {!isCreated && !isJoined ? (
         <>
-          <Button onClick={() => setModalShow(true)}>Create a game</Button>
+          <Button  variant="warning" className="create-game-button" onClick={() => setModalShow(true)}>Create a game</Button>
           <GameRoomTable roomDisplay={roomDisplay} joinRoom={joinRoom} />
         </>
       ) : (

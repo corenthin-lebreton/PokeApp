@@ -61,7 +61,7 @@ const Home = () => {
       <Header setInputSearch={setInputSearch} />
       <img src={pokeball} alt="pokeballs" className="pokeball-1-home"></img>
       <img src={pokeball} alt="pokeballs" className="pokeball-2-home"></img>
-      <p className="titre-home">Attrapez les tous !</p>
+      <p className="titre-home">Catch them all !</p>
       <Container>
         <Row>{pokemonCardDisplay}</Row>
       </Container>

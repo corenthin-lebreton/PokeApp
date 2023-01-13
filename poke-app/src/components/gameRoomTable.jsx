@@ -1,15 +1,16 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
+import "../styles/lobby-battle.scss"
 
 const GameRoomTable = ({ roomDisplay, joinRoom }) => {
   return (
-    <div>
-      <Table striped bordered hover size="sm" variant="light">
+    <div className="tableau-room">
+      <Table  striped bordered hover size="sm" variant="light">
         <thead>
           <tr>
-            <th>Room Name</th>
+            <th>Room name</th>
             <th>Players</th>
-            <th>Private server</th>
+            <th>Private room</th>
             <th>Join</th>
           </tr>
         </thead>
