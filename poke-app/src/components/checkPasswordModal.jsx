@@ -26,10 +26,18 @@ const CheckPasswordModal = (props) => {
             placeholder="Enter the password"
             onChange={(e) => props.handlepasswordchange(e)}
           />
-          <Button className="button-join-private" variant="warning">Join</Button>
+          <Button
+            className="button-join-private"
+            variant="warning"
+            onClick={props.joinroombypassword}>
+            Join
+          </Button>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="button-close-private" variant="warning" onClick={props.onHide}>
+          <Button
+            className="button-close-private"
+            variant="warning"
+            onClick={props.onHide}>
             Close
           </Button>
         </Modal.Footer>

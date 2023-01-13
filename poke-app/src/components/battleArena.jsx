@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../styles/pokebattle.scss";
 import axios from "axios";
 import ChoosePokemonToFight from "./choosePokemonToFight";
+import { useNavigate } from "react-router-dom";
+
 const BattleArena = () => {
   const token = localStorage.getItem("token");
   const [isPlayerJoined, setIsPlayerJoined] = useState(false);
@@ -9,8 +11,13 @@ const BattleArena = () => {
   const [modalShow, setModalShow] = useState(true);
   const [isPlayerSendPokemonsList, setIsPlayerSendPokemonsList] =
     useState(false);
-
+  const [idPokemon, setIdPokemon] = useState([]);
   const [isPokemonSent, setIsPokemonSent] = useState(false);
+  const [idPokemonHost, setIdPokemonHost] = useState([]);
+  const [idPokemonEnnemy, setIdPokemonEnnemy] = useState([]);
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     const checkPlayersJoined = async () => {
       try {
@@ -24,6 +31,7 @@ const BattleArena = () => {
             });
 
             console.log(res.data);
+            setIdPokemon(res.data);
             if (res.data.message === "new player joined") {
               return true;
             } else {
@@ -74,7 +82,13 @@ const BattleArena = () => {
                 }
               );
               console.log(res.data);
-              if (res.data.message === "ennemy is ready") {
+              setIdPokemonEnnemy(res.data.contentEnnemy);
+              setIdPokemonHost(res.data.pokemonsHost);
+              if (
+                res.data.message === "you won the game and you get 1 coin" ||
+                res.data.message === "you lost the game"
+              ) {
+                navigate("/home");
                 return true;
               } else {
                 return false;
