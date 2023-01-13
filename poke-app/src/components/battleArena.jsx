@@ -3,13 +3,15 @@ import "../styles/pokebattle.scss";
 import axios from "axios";
 import ChoosePokemonToFight from "./choosePokemonToFight";
 const BattleArena = () => {
-  const [isPlayerJoined, setIsPlayerJoined] = useState(false);
   const token = localStorage.getItem("token");
+  const [isPlayerJoined, setIsPlayerJoined] = useState(false);
+  const [pokemon, setPokemon] = useState([]);
+  const [modalShow, setModalShow] = useState(true);
 
   useEffect(() => {
     const checkPlayersJoined = async () => {
       try {
-        while (isPlayerJoined === false) {
+        while (true) {
           await new Promise((resolve) => setTimeout(resolve, 2000));
           const checkIfNewPlayerJoined = async () => {
             const res = await axios.get("http://localhost:3000/api/isWaiting", {
@@ -19,19 +21,40 @@ const BattleArena = () => {
             });
 
             console.log(res.data);
-            if (res.data === true) {
-              setIsPlayerJoined(true);
+            if (res.data.message === "new player joined") {
+              return true;
+            } else {
+              return false;
             }
           };
-          await checkIfNewPlayerJoined();
-          break;
+          if (await checkIfNewPlayerJoined()) {
+            break;
+          }
         }
+        setIsPlayerJoined(true);
       } catch (error) {
         console.log(error);
       }
     };
     checkPlayersJoined();
-  }, [isPlayerJoined]);
+  }, []);
+
+  useEffect(() => {
+    const fetchPokemon = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/api/pokedex", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setPokemon(res.data.pokemons);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchPokemon();
+  }, []);
+
   return (
     <div>
       <div className="terrain">
@@ -51,7 +74,13 @@ const BattleArena = () => {
         <div className="pokemon-post-2"></div>
       </div>
 
-      {isPlayerJoined ? <ChoosePokemonToFight /> : null}
+      {isPlayerJoined ? (
+        <ChoosePokemonToFight
+          pokemon={pokemon}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+      ) : null}
     </div>
   );
 };

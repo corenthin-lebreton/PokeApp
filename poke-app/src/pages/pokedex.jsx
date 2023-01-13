@@ -18,6 +18,7 @@ const Pokedex = () => {
   const [allPokemon, setAllPokemon] = useState();
   const [imageModal, setimageModal] = useState();
   const [imagePokedex, setImagePokedex] = useState();
+  const [isPokemonInUserPokedex, setIsPokemonInUserPokedex] = useState();
 
   const [pokemonInfoToDisplay, setPokemonInfoToDisplay] = useState();
   //---------------------------Go to the first and last pokemon----------------------------
@@ -46,9 +47,11 @@ const Pokedex = () => {
       })
       .then((res) => {
         if (res.data.length === 0) {
+          setIsPokemonInUserPokedex(false);
           setErrorCode(400);
         } else {
           setPokemonId(res.data.pokemons);
+          setIsPokemonInUserPokedex(true);
         }
       })
       .catch((res) => {
@@ -232,6 +235,7 @@ const Pokedex = () => {
         `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${result.data.id}.png`
       );
       setPokemonInfo(result.data);
+      setIsPokemonInUserPokedex(true);
       setPokemonId((pokemonId) => [...pokemonId, result.data.id]);
 
       setCoin(coin - 1);
@@ -256,7 +260,11 @@ const Pokedex = () => {
       </div>
 
       <div>
-        <Header setInputSearch={setInputSearch} search={search} />
+        <Header
+          setInputSearch={setInputSearch}
+          search={search}
+          isPokemonInUserPokedex={isPokemonInUserPokedex}
+        />
         <PokedexComponent
           error={error}
           pokemon={pokemonInfo}

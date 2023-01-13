@@ -18,7 +18,7 @@ const GameRoomTable = ({ roomDisplay, joinRoom }) => {
             <tbody key={room.id}>
               <tr>
                 <td>{room.name}</td>
-                <td>{room.currentPlayers} / 2</td>
+                <td>{room.currentPlayers.length} / 2</td>
                 {room.passwordIsRequired ? <td>True</td> : <td>False</td>}
                 <td>
                   <Button onClick={() => joinRoom(room.id)}>Join</Button>

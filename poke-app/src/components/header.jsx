@@ -8,7 +8,12 @@ import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 
-const Header = ({ setInputSearch, isSearchingOnPokedex, search }) => {
+const Header = ({
+  setInputSearch,
+  isSearchingOnPokedex,
+  search,
+  isPokemonInUserPokedex,
+}) => {
   const [userName, setUserName] = useState("");
   const token = localStorage.getItem("token");
 
@@ -42,9 +47,16 @@ const Header = ({ setInputSearch, isSearchingOnPokedex, search }) => {
             className="image-pikachu"></img>
         </a>
 
-        <a href="/pokebattle">
-          <img src={pokebattle} alt="battle" className="image-pokebattle"></img>
-        </a>
+        {isPokemonInUserPokedex ? (
+          <a href="/pokebattle">
+            <img
+              src={pokebattle}
+              alt="battle"
+              className="image-pokebattle"></img>
+          </a>
+        ) : (
+          <></>
+        )}
 
         <h1 className="title-header">Welcome {userName.username}</h1>
         <Navbar bg="none" expand="lg" className="navbar">

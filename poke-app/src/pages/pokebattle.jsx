@@ -105,7 +105,7 @@ const Pokebattle = () => {
         const res = await axios.post(
           "http://localhost:3000/api/joinRoom",
           {
-            id: roomId,
+            id: id,
             private: false,
           },
           {
@@ -140,6 +140,7 @@ const Pokebattle = () => {
       console.log(error);
     } else {
       try {
+        setModalPassword(false);
         const res = await axios.post(
           "http://localhost:3000/api/joinRoom",
           {
