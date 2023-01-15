@@ -1,8 +1,6 @@
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import React, { useEffect, useState } from "react";
-import "../styles/homeStyle.scss";
+import "../styles/header.scss";
 import "../styles/pokedexStyle.scss";
 import PokedexComponent from "../components/pokedexComponent";
 import Header from "../components/header";
@@ -17,6 +15,13 @@ const Pokedex = () => {
   const [pokemonIndex, setPokemonIndex] = useState(0);
   const [inputSearch, setInputSearch] = useState("");
   const [errorSearch, setErrorSearch] = useState("");
+  const [coin, setCoin] = useState();
+  const [allPokemon, setAllPokemon] = useState();
+  const [imageModal, setimageModal] = useState();
+  const [imagePokedex, setImagePokedex] = useState();
+  const [isPokemonInUserPokedex, setIsPokemonInUserPokedex] = useState();
+
+  const [pokemonInfoToDisplay, setPokemonInfoToDisplay] = useState();
   //---------------------------Go to the first and last pokemon----------------------------
   const next = () => {
     if (pokemonIndex === pokemonId.length - 1) {
@@ -38,46 +43,51 @@ const Pokedex = () => {
   //----------------------------Verify if a pokedex already exists------------------------
   useEffect(() => {
     axios
-      .get("https://api-pokemon-app.onrender.com/api/pokedex", {
+      .get("http://localhost:3000/api/pokedex", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         if (res.data.length === 0) {
+          setIsPokemonInUserPokedex(false);
           setErrorCode(400);
         } else {
           setPokemonId(res.data.pokemons);
+          setIsPokemonInUserPokedex(true);
         }
       })
       .catch((res) => {
-        setError(res.response.data.message);
         setErrorCode(res.response.status);
       });
   }, []);
-  //-------------------------------------------------------------------------------------
+  // //-------------------------------------------------------------------------------------
 
-  //-------------------Get Pokemon Info to add it on the pokedex display-----------------
+  // //-------------------Get Pokemon Info to add it on the pokedex display-----------------
   useEffect(() => {
     if (pokemonId.length === 0) {
       setErrorCode(400);
-      setError("Vous n'avez plus de pokemon. Ajoutez en un nouveau.");
       return;
     }
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId[pokemonIndex]}`)
       .then((res) => {
-        setPokemonInfo(res.data);
+        setPokemonInfoToDisplay(res.data);
+        setImagePokedex(
+          `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId[pokemonIndex]}.png`
+        );
         setErrorCode(200);
       })
       .catch((res) => {
         setError(res.response.data.message);
       });
+
+    setErrorSearch("");
   }, [pokemonId, pokemonIndex]);
 
-  //---------------------------------------------------------------------------------
+  // //---------------------------------------------------------------------------------
 
-  //----------------Get  one capacity and secret capacity---------------------------
+  // //----------------Get  one capacity and secret capacity---------------------------
   const secretCapacity = () => {
-    const secretCapacity = pokemonInfo?.abilities.find(
+    const secretCapacity = pokemonInfoToDisplay?.abilities.find(
       (ability) => ability.is_hidden === true
     );
     if (secretCapacity) {
@@ -87,7 +97,7 @@ const Pokedex = () => {
     }
   };
   const capacity = () => {
-    const capacity = pokemonInfo?.abilities.find(
+    const capacity = pokemonInfoToDisplay?.abilities.find(
       (ability) => ability.is_hidden === false
     );
     if (capacity) {
@@ -95,41 +105,6 @@ const Pokedex = () => {
     } else {
       return "Aucune";
     }
-  };
-  //------------------------------Delete Pokemon from Pokedex-------------------------------------------------------
-  const deletePokemon = () => {
-    const data = {
-      id: pokemonId[pokemonIndex],
-    };
-
-    axios
-      .delete(
-        `https://api-pokemon-app.onrender.com/api/deletePokemon/`,
-
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-        { data }
-      )
-      .then((res) => {
-        setPokemonId(pokemonId.filter((id) => id !== pokemonId[pokemonIndex]));
-        setPokemonIndex(0);
-      })
-      .catch((res) => {
-        setError(res.response.data.message);
-        setErrorCode(res.response.status);
-      });
-  };
-  //--------------------------Go to the first and last Pokemon from Pokedex-------------------------
-
-  const switchToFirstPokemon = () => {
-    if (pokemonIndex === 0) return;
-    setPokemonIndex(0);
-  };
-
-  const switchToLastPokemon = () => {
-    if (pokemonIndex === pokemonId.length - 1) return;
-    setPokemonIndex(pokemonId.length - 1);
   };
 
   //---------------------------------SearchBar---------------------------------------------------------
@@ -144,44 +119,168 @@ const Pokedex = () => {
     }
   };
 
-  //----------------------------------------------------------------------------------------------------
+  //---------------------------------------------------------------------------------------------------
+  //---------------------------------Get coin of user------------------------------------------------------------------
+  const getCoin = async () => {
+    await axios
+      .get("http://localhost:3000/api/getCoin", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setCoin(res.data.pokedollarz);
+      })
+      .catch((res) => {
+        setError(res.response.data.message);
+        setErrorCode(res.response.status);
+      });
+  };
+
+  useEffect(() => {
+    getCoin();
+  }, [coin]);
+  //---------------------------------------------------------------------------------------------------
+
+  //----------------------------Get all Pokemon-----------------------------------------------------------------------
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        "https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=1000"
+      );
+      setAllPokemon(result.data.results);
+    };
+    fetchData();
+  }, []);
+  //------------------------Verify if pokedex exists create it or not and send pokemon to it---------------------------------------------------------------------------
+  const sendPokemonToApi = async () => {
+    await axios
+      .get("http://localhost:3000/api/pokedextoadd", {
+        "Content-Type": "application/json",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.data === null) {
+          axios
+            .post(
+              "http://localhost:3000/api/create",
+              {},
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+            .then((res) => {
+              axios
+                .patch(
+                  "http://localhost:3000/api/addPokemon",
+                  {
+                    id: pokemonInfo?.id,
+                  },
+                  {
+                    "Content-Type": "application/json",
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  }
+                )
+                .then((res) => {})
+                .catch((res) => {
+                  setError(res.response.data.message);
+                  setErrorCode(res.response.status);
+                });
+            });
+        } else {
+          axios
+            .patch(
+              "http://localhost:3000/api/addPokemon",
+              { id: pokemonInfo?.id },
+              {
+                "Content-Type": "application/json",
+                headers: { Authorization: `Bearer ${token}` },
+              }
+            )
+            .then((res) => {})
+            .catch((res) => {
+              if (res.response.data.message != undefined) {
+                setError(res.response.data.message);
+              }
+              setErrorCode(res.response.status);
+            });
+        }
+      });
+  };
+  useEffect(() => {
+    if (pokemonInfo) {
+      sendPokemonToApi();
+    }
+  }, [pokemonInfo]);
+  //---------------------------------------------------------------------------------------------------
+
+  //----------------------Main function to get a random pokemon-----------------------------------------------------------------------------
+
+  const getRandomPokemon = async () => {
+    if (coin > 0) {
+      const randomPokemon = await allPokemon[
+        Math.floor(Math.random() * allPokemon.length)
+      ];
+
+      const url = randomPokemon.url
+        .replace("https://pokeapi.co/api/v2/pokemon-species/", "")
+        .replace("/", "");
+
+      const result = await axios(`https://pokeapi.co/api/v2/pokemon/${url}`);
+      setimageModal(
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${result.data.id}.png`
+      );
+      setPokemonInfo(result.data);
+      setIsPokemonInUserPokedex(true);
+      setPokemonId((pokemonId) => [...pokemonId, result.data.id]);
+
+      setCoin(coin - 1);
+      await axios.patch(
+        "http://localhost:3000/api/reduceCoin",
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+    } else {
+      setError("Désolé vous n'avez plus de pokedollarz");
+    }
+  };
+  //---------------------------------------------------------------------------------------------------
+
+  //---------------------------------------------Render-------------------------------------------------------
   return (
     <div>
-      {errorCode === 400 ? (
-        <div>
-          <Header setInputSearch={setInputSearch} />
-          <p className="titre-pokedex">Voici votre Pokedex ! </p>
-          <img
-            src={pokeball}
-            alt="pokeballs"
-            className="pokeball-1-pokedex"></img>
-          <img
-            src={pokeball}
-            alt="pokeballs"
-            className="pokeball-2-pokedex"></img>
-          <img
-            src="https://media.tenor.com/7C6H6TQk-D8AAAAC/pokemon-ash.gif"
-            className="sad-sasha"></img>
-          {error && <p className="no-pokemon">{error}</p>}
-        </div>
-      ) : (
-        <div>
-          <Header setInputSearch={setInputSearch} search={search} />
-          <PokedexComponent
-            error={error}
-            errorCode={errorCode}
-            pokemon={pokemonInfo}
-            secretCapacity={secretCapacity()}
-            capacity={capacity()}
-            next={next}
-            previous={previous}
-            deletePokemon={deletePokemon}
-            switchToFirstPokemon={switchToFirstPokemon}
-            switchToLastPokemon={switchToLastPokemon}
-            errorSearch={errorSearch}
-          />
-        </div>
-      )}
+      <div>
+        <p className="titre-pokedex">Your Pokedex !</p>
+      </div>
+
+      <div>
+        <Header
+          setInputSearch={setInputSearch}
+          search={search}
+          isPokemonInUserPokedex={isPokemonInUserPokedex}
+        />
+        <PokedexComponent
+          error={error}
+          pokemon={pokemonInfo}
+          pokemonInfo={pokemonInfoToDisplay}
+          coin={coin}
+          getRandomPokemon={getRandomPokemon}
+          imageModal={imageModal}
+          next={next}
+          previous={previous}
+          imagePokedex={imagePokedex}
+          capacity={capacity}
+          secretCapacity={secretCapacity}
+          errorSearch={errorSearch}
+        />
+      </div>
     </div>
   );
 };

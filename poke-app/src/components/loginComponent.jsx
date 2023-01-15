@@ -25,7 +25,7 @@ const Login = () => {
       password: password,
     };
     axios
-      .post("https://api-pokemon-app.onrender.com/api/login", data)
+      .post("http://localhost:3000/api/login", data)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         window.location.href = "/home";

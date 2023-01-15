@@ -1,12 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import image from "../assets/logo.png";
 import pokedex from "../assets/Pokedex.png";
 import pikachu from "../assets/pikachu.png";
+import pokebattle from "../assets/pokebattle.png";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
+import axios from "axios";
 
-const Header = ({ setInputSearch, isSearchingOnPokedex, search }) => {
+const Header = ({
+  setInputSearch,
+  isSearchingOnPokedex,
+  search,
+  isPokemonInUserPokedex,
+}) => {
+  const [userName, setUserName] = useState("");
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get("http://localhost:3000/api/getUserName", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUserName(result.data);
+    };
+    fetchData();
+  }, []);
   const logOutUser = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
@@ -26,6 +47,18 @@ const Header = ({ setInputSearch, isSearchingOnPokedex, search }) => {
             className="image-pikachu"></img>
         </a>
 
+        {isPokemonInUserPokedex ? (
+          <a href="/pokebattle">
+            <img
+              src={pokebattle}
+              alt="battle"
+              className="image-pokebattle"></img>
+          </a>
+        ) : (
+          <></>
+        )}
+
+        <h1 className="title-user">Connected as : {userName.username}</h1>
         <Navbar bg="none" expand="lg" className="navbar">
           <Form className="d-flex">
             <Form.Control
@@ -35,12 +68,12 @@ const Header = ({ setInputSearch, isSearchingOnPokedex, search }) => {
               aria-label="Search"
               onChange={(e) => setInputSearch(e.target.value)}
             />
-            <Button className="btn btn-warning" onClick={search}>
+            <Button className="btn-search" variant="warning" onClick={search}>
               Search
             </Button>
           </Form>
 
-          <Button variant="secondary" onClick={logOutUser}>
+          <Button className="btn-logout" variant="secondary" onClick={logOutUser}>
             Logout
           </Button>
         </Navbar>

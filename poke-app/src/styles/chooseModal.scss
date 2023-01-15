@@ -1,0 +1,81 @@
+.choose-modal-title{
+    font-size: x-large;
+    position: relative;
+    left: 23%;
+}
+
+.number-pokemon{
+    background-color: white;
+    position: absolute;
+    width: 13vw;
+    height: 10vh;
+    top: 524%;
+    right: 3%;
+    border-radius: 5%;
+    z-index: 1;
+
+}
+
+.background-modal-choose{
+    background-image: url(../assets/arena-choose.png);
+}
+
+.choose-pokemon-image{
+    width: 20vw;
+    position: relative;
+    top: -10%;
+}
+
+.bottom-part-choose-pokemon{
+    position: absolute;
+    left: 50%;
+    bottom: 4%;
+    border-radius: 15%;
+    background-color: white;
+    width: 25vw;
+    height: 8vh;
+}
+
+.text-number-pokemon{
+    font-size: large;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+}
+
+.text-bottom-part-choose-pokemon{
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    font-weight: bold;
+}
+
+.top-part-choose-pokemon{
+    position: absolute;
+    top: 45%;
+    right: 4%;
+    border-radius: 10%;
+    background-color: white;
+    width: 8vw;
+    height: 10vh;
+}
+
+.button-yes-choose-pokemon{
+    position: absolute;
+    top: 50%;
+    right: 12%;
+}
+
+.button-no-choose-pokemon{
+    position: absolute;
+    top: 50%;
+    right: 5%;
+}
+
+.pokemon-choose-name{
+    position: absolute;
+    top: 87%;
+    right: 8%;
+    top: 81%;
+    font-weight: bold;
+}

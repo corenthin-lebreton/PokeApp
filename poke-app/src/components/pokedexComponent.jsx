@@ -1,93 +1,130 @@
 import React, { useEffect, useState } from "react";
-import pokedexx from "../assets/Pokedexx.png";
-import arrowsNext from "../assets/arrows-next.png";
-import arrowsPrevious from "../assets/arrows-previous.png";
-import "../styles/homeStyle.scss";
+import arrowsNext from "../assets/arrow-right.png";
+import arrowsPrevious from "../assets/arrow-left.png";
+import pokebag from "../assets/pokebag.png";
+import "../styles/header.scss";
 import "../styles/pokedexStyle.scss";
-import pokeball from "../assets/pokeball.png";
+import UseModal from "./useModal";
 const PokedexComponent = ({
   pokemon,
-  error,
-  errorCode,
   capacity,
   secretCapacity,
   next,
   previous,
-  deletePokemon,
-  switchToFirstPokemon,
-  switchToLastPokemon,
   errorSearch,
+  getRandomPokemon,
+  coin,
+  imageModal,
+  error,
+  pokemonInfo,
+  imagePokedex,
 }) => {
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <div>
-      <p className="titre-pokedex">Voici votre Pokedex ! </p>
-      <img src={pokeball} alt="pokeballs" className="pokeball-1-pokedex"></img>
-      <img src={pokeball} alt="pokeballs" className="pokeball-2-pokedex"></img>
+      {/* NOUVEAU POKEDEX */}
+
       <div className="background-pokedex">
-        <h2 className="errorSearch">{errorSearch}</h2>
-        <div>
-          <img src={pokedexx} alt="pokedexx" className="pokedex"></img>
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`}
-            alt="pokemon"
-            className="pokemon-image"></img>
+        <div className="upper-screen"></div>
+        <div className="upper-screen-content-top"></div>
+        <div className="upper-screen-content-bottom"></div>
+        <div className="upper-screen-content-big-middle-circle"></div>
+        <div className="upper-screen-content-little-middle-circle"></div>
+        <div className="upper-screen-content-little-middle-green-circle"></div>
+
+        <div className="between-screen"></div>
+        <div className="between-screen-top-shadow"></div>
+        <div className="between-screen-bottom-shadow"></div>
+        <div className="between-screen-left-square"></div>
+        <div className="between-screen-middle-square"></div>
+        <div className="between-screen-right-square"></div>
+
+        <div className="bottom-part"></div>
+        <div className="bottom-part-background"></div>
+        <div className="bottom-part-screen">
+          {imagePokedex ? (
+            <img
+              src={imagePokedex}
+              alt="Pokemon"
+              className="imagePokemonInPokedex"></img>
+              ) : (
+                <></>
+                )}
+
+          {errorSearch ? <p>{errorSearch}</p> : <></>}
+          <p className="pokemon-name-pokedex">{pokemonInfo?.name}</p>
+          {!pokemonInfo ? (
+            <></>
+            ) : (
+              <>
+              <p className="pokemon-capacity-pokedex"> Capacité : {capacity()}</p>
+              <h1 className="pokemon-id-pokedex">No. {pokemonInfo?.id}</h1>
+              <p className="pokemon-height-pokedex">Hauteur: {pokemonInfo?.height} </p>
+              <p className="pokemon-width-pokedex">Poids: {pokemonInfo?.weight}</p>
+              <p className="pokemon-secret-capacity-pokedex">Capacité secrète : {secretCapacity()}</p>
+              {pokemonInfo?.types.length > 1 ? (
+                <div>
+              <div className="pokemon-type-1-pokedex">
+                Types : {pokemonInfo?.types[0].type.name} - {pokemonInfo?.types[1].type.name}
+              </div>
+              {/* <div className="pokemon-type-2-pokedex">
+                {pokemonInfo?.types[1].type.name}
+              </div> */}
+                </div>
+              ) : (
+                <p className="pokemon-solo-type-pokedex"> Types : {pokemonInfo?.types[0].type.name}</p>
+                )}
+            </>
+          )}
+
+              
+          <div className="ligne-separation-1"></div>
+          <div className="ligne-separation-2"></div>
+          <div className="ligne-separation-3"></div>
+          <div className="ligne-separation-4"></div>
+          <div className="ligne-separation-5"></div>
+
+
         </div>
 
-        <div className="user-interface">
-          <div className="blue-button" onClick={deletePokemon}></div>
+        <div className="bottom-left-part">
+          <img
+            src={pokebag}
+            alt="pokebag"
+            className="pokebag"
+            onClick={() => {
+              setModalShow(true);
+            }}></img>
+        </div>
+        <div className="bottom-left-blue-button"></div>
+        <div className="bottom-left-blue-button-light"></div>
 
-          <div className="yellow-screen">
-            {pokemon?.types.length > 1 ? (
-              <div>
-                <p className="pokemon-types">Types : </p>
-
-                <p className="pokemon-type-1">{pokemon?.types[0].type.name}</p>
-
-                <p className="pokemon-type-2">{pokemon?.types[1].type.name}</p>
-              </div>
-            ) : (
-              <div>
-                <p className="pokemon-types">Types : </p>
-                <p className="pokemon-single-type">
-                  {pokemon?.types[0].type.name}
-                </p>
-              </div>
-            )}
-          </div>
-
-          <div
-            className="first-pokemon-button"
-            onClick={switchToFirstPokemon}></div>
-
-          <div
-            className="last-pokemon-button"
-            onClick={switchToLastPokemon}></div>
-
-          <div className="pokemon-name-pokedex">
-            <div className="pokemon-names">{pokemon?.name}</div>
-
-            <div className="pokemon-capacity">
-              <p>Capacité : {capacity}</p>
-              <p>Capacité secrète : {secretCapacity}</p>
-            </div>
-
-            <p className="pokemon-poids">Poids : {pokemon?.weight} </p>
-            <p className="pokemon-id">Numéro du pokemon : {pokemon?.id}</p>
-          </div>
-
+        <div className="bottom-right-part"></div>
+        <div className="bottom-right-background">
           <img
             src={arrowsNext}
-            alt="arrows-next"
-            className="arrows-next"
+            alt="arrow-next"
+            className="arrow-next"
             onClick={next}></img>
+
           <img
             src={arrowsPrevious}
-            alt="arrows-previous"
-            className="arrows-previous"
+            alt="arrow-left"
+            className="arrow-left"
             onClick={previous}></img>
         </div>
       </div>
-    </div>
+      <UseModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        getrandompokemon={getRandomPokemon}
+        error={error}
+        pokemoninfo={pokemon}
+        imagemodal={imageModal}
+        coin={coin}
+        />
+        </div>
   );
 };
 
