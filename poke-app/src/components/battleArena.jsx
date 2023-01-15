@@ -35,7 +35,7 @@ const BattleArena = () => {
             console.log(res.data);
             setMessage(res.data.message);
             setIdPokemon(res.data);
-            if (res.data.message === "new player joined") {
+            if (res.data.message === "New player joined") {
               return true;
             } else {
               return false;
@@ -86,8 +86,8 @@ const BattleArena = () => {
               );
 
               if (
-                res.data.message === "you won the game and you get 1 coin" ||
-                res.data.message === "you lost the game"
+                res.data.message === "You won the game and you get 1 coin !" ||
+                res.data.message === "You lost the game"
               ) {
                 setIdPokemonHost(res.data.pokemonHost);
                 setIdPokemonEnnemy(res.data.contentEnnemy);
@@ -260,7 +260,7 @@ const BattleArena = () => {
         />
       ) : null}
 
-      {message ? <p>{message}</p> : null}
+      {message ? <p className="message">{message}</p> : null}
     </div>
   );
 };

@@ -52,15 +52,6 @@ const HeaderBattle = () => {
 
           <p className="titre-battle">Fight other Trainer !</p>
 
-          <img
-            src={pokeball}
-            alt="pokeballs"
-            className="pokeball-1-pokebattle"></img>
-          <img
-            src={pokeball}
-            alt="pokeballs"
-            className="pokeball-2-pokebattle"></img>
-
           <h1 className="title-user">Connected as : {userName.username}</h1>
 
           <Navbar bg="none" expand="lg" className="navbar">

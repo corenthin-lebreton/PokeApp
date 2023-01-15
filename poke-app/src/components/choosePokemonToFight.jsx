@@ -84,15 +84,9 @@ const ChoosePokemonToFight = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered>
       <Modal.Header>
-        <Modal.Title
-          className="choose-modal-title"
-          id="contained-modal-title-vcenter">
-          Choose your pokemon for this combat !
-          <div className="text-number-pokemon">
-            <Card.Text className="number-pokemon">
-              Pokemon choisis : {lengthPokemonChose}/6
-            </Card.Text>
-          </div>
+        <Modal.Title className="choose-modal-title" id="contained-modal-title-vcenter">
+          Choose your pokemon for this combat ! 
+          <div className="number-pokemon"><Card.Text className="text-number-pokemon">Pokemon choisis : {lengthPokemonChose}/6</Card.Text></div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="background-modal-choose">

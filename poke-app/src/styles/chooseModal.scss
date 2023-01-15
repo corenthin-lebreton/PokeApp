@@ -7,7 +7,7 @@
 .number-pokemon{
     background-color: white;
     position: absolute;
-    width: 12vw;
+    width: 13vw;
     height: 10vh;
     top: 524%;
     right: 3%;
@@ -37,11 +37,10 @@
 }
 
 .text-number-pokemon{
+    font-size: large;
     position: absolute;
-    font-size: medium;
-    top: 32%;
-    left: 6%;
-
+    top: 30%;
+    left: 5%;
 }
 
 .text-bottom-part-choose-pokemon{

@@ -19,12 +19,12 @@
     top: 5%;
   }
   
-  .pokeball-2-pokebattle {
+.pokeball-2-pokebattle {
     width: 2vw;
     position: absolute;
     right: 26%;
     top: 5%;
-  }
+}
 
 .terrain{
     background-color: rgb(180, 180, 136);
@@ -32,7 +32,7 @@
     height: 31rem;
     position: absolute;
     top: 22%;
-    left: 15%;
+    left: 16%;
     transform: skewX(-40deg);
     box-shadow: 15px 15px 20px #000000;
 }
@@ -179,5 +179,13 @@
 
 .button-logout{
     position: absolute;
-    top: 0%;
+    top: 40%;
+}
+
+.message{
+    color: white;
+    position: absolute;
+    top: 93%;
+    left: 45%;
+
 }
