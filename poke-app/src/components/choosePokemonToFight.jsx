@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Card, Modal } from "react-bootstrap";
-import "../styles/chooseModal.scss"
+import "../styles/chooseModal.scss";
 
 const ChoosePokemonToFight = (props) => {
   const [pokemonInfo, setPokemonInfo] = useState();
@@ -84,25 +84,41 @@ const ChoosePokemonToFight = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered>
       <Modal.Header>
-        <Modal.Title className="choose-modal-title" id="contained-modal-title-vcenter">
-          Choose your pokemon for this combat ! 
-          <Card.Text className="number-pokemon"><div className="text-number-pokemon">Pokemon choisis : {lengthPokemonChose}/6</div></Card.Text>
+        <Modal.Title
+          className="choose-modal-title"
+          id="contained-modal-title-vcenter">
+          Choose your pokemon for this combat !
+          <div className="text-number-pokemon">
+            <Card.Text className="number-pokemon">
+              Pokemon choisis : {lengthPokemonChose}/6
+            </Card.Text>
+          </div>
         </Modal.Title>
       </Modal.Header>
-        <Modal.Body className="background-modal-choose">
-          <img className="choose-pokemon-image"
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonInfo?.id}.png`}>              
-          </img>
-          <div className="bottom-part-choose-pokemon"><div className="text-bottom-part-choose-pokemon">Voulez vous choisir ce pokemon : </div></div>
-          <div className="top-part-choose-pokemon"></div>
-           <div className="pokemon-choose-name">{pokemonInfo?.name}</div> 
-            <Button variant="warning" className="button-yes-choose-pokemon" onClick={() => choosePokemon(pokemonInfo?.id, true)}>
-              oui
-            </Button>
-            <Button variant="warning" className="button-no-choose-pokemon" onClick={() => choosePokemon(pokemonInfo?.id, false)}>
-              non
-            </Button>
-        </Modal.Body>
+      <Modal.Body className="background-modal-choose">
+        <img
+          className="choose-pokemon-image"
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonInfo?.id}.png`}></img>
+        <div className="bottom-part-choose-pokemon">
+          <div className="text-bottom-part-choose-pokemon">
+            Voulez vous choisir ce pokemon :{" "}
+          </div>
+        </div>
+        <div className="top-part-choose-pokemon"></div>
+        <div className="pokemon-choose-name">{pokemonInfo?.name}</div>
+        <Button
+          variant="warning"
+          className="button-yes-choose-pokemon"
+          onClick={() => choosePokemon(pokemonInfo?.id, true)}>
+          oui
+        </Button>
+        <Button
+          variant="warning"
+          className="button-no-choose-pokemon"
+          onClick={() => choosePokemon(pokemonInfo?.id, false)}>
+          non
+        </Button>
+      </Modal.Body>
       <Modal.Footer>
         <Button variant="warning">Close</Button>
       </Modal.Footer>
