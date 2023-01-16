@@ -6,7 +6,7 @@ import GameRoomTable from "../components/gameRoomTable";
 import axios from "axios";
 import BattleArena from "../components/battleArena";
 import CheckPasswordModal from "../components/checkPasswordModal";
-import "../styles/lobby-battle.scss"
+import "../styles/lobby-battle.scss";
 
 const Pokebattle = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -25,11 +25,14 @@ const Pokebattle = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get("http://localhost:3000/api/getRooms", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const result = await axios.get(
+        "https://api-pokemon-8etb.onrender.com/api/getRooms",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(result.data);
       setRoomDisplay(result.data);
     };
@@ -41,7 +44,7 @@ const Pokebattle = () => {
   const createRoomGame = async (name, password) => {
     if (isPrivate) {
       const res = await axios.post(
-        "http://localhost:3000/api/createRoom",
+        "https://api-pokemon-8etb.onrender.com/api/createRoom",
         {
           roomName: name,
           isPrivate: isPrivate,
@@ -60,7 +63,7 @@ const Pokebattle = () => {
       setIsCreated(true);
     } else {
       const res = await axios.post(
-        "http://localhost:3000/api/createRoom",
+        "https://api-pokemon-8etb.onrender.com/api/createRoom",
         {
           roomName: name,
           isPrivate: isPrivate,
@@ -105,7 +108,7 @@ const Pokebattle = () => {
     } else {
       try {
         const res = await axios.post(
-          "http://localhost:3000/api/joinRoom",
+          "https://api-pokemon-8etb.onrender.com/api/joinRoom",
           {
             id: id,
             private: false,
@@ -144,7 +147,7 @@ const Pokebattle = () => {
       try {
         setModalPassword(false);
         const res = await axios.post(
-          "http://localhost:3000/api/joinRoom",
+          "https://api-pokemon-8etb.onrender.com/api/joinRoom",
           {
             password: handlePassword,
             id: roomId,
@@ -169,7 +172,12 @@ const Pokebattle = () => {
       <HeaderBattle />
       {!isCreated && !isJoined ? (
         <>
-          <Button  variant="warning" className="create-game-button" onClick={() => setModalShow(true)}>Create a game</Button>
+          <Button
+            variant="warning"
+            className="create-game-button"
+            onClick={() => setModalShow(true)}>
+            Create a game
+          </Button>
           <GameRoomTable roomDisplay={roomDisplay} joinRoom={joinRoom} />
         </>
       ) : (

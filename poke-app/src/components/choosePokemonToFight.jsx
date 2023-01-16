@@ -56,7 +56,7 @@ const ChoosePokemonToFight = (props) => {
       const sendPokemonChose = async () => {
         try {
           await axios.post(
-            "http://localhost:3000/api/addPokemonForFight",
+            "https://api-pokemon-8etb.onrender.com/api/addPokemonForFight",
             {
               pokemonsForFight: chosePokemon,
             },
@@ -84,9 +84,15 @@ const ChoosePokemonToFight = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered>
       <Modal.Header>
-        <Modal.Title className="choose-modal-title" id="contained-modal-title-vcenter">
-          Choose your pokemon for this combat ! 
-          <div className="number-pokemon"><Card.Text className="text-number-pokemon">Pokemon choisis : {lengthPokemonChose}/6</Card.Text></div>
+        <Modal.Title
+          className="choose-modal-title"
+          id="contained-modal-title-vcenter">
+          Choose your pokemon for this combat !
+          <div className="number-pokemon">
+            <Card.Text className="text-number-pokemon">
+              Pokemon choisis : {lengthPokemonChose}/6
+            </Card.Text>
+          </div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="background-modal-choose">

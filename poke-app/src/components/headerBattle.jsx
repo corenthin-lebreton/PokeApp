@@ -14,11 +14,14 @@ const HeaderBattle = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get("http://localhost:3000/api/getUserName", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const result = await axios.get(
+        "https://api-pokemon-8etb.onrender.com/api/getUserName",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setUserName(result.data);
     };
     fetchData();

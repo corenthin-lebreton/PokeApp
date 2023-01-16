@@ -26,11 +26,14 @@ const BattleArena = () => {
         while (true) {
           await new Promise((resolve) => setTimeout(resolve, 2000));
           const checkIfNewPlayerJoined = async () => {
-            const res = await axios.get("http://localhost:3000/api/isWaiting", {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            });
+            const res = await axios.get(
+              "https://api-pokemon-8etb.onrender.com/api/isWaiting",
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
 
             console.log(res.data);
             setMessage(res.data.message);
@@ -56,11 +59,14 @@ const BattleArena = () => {
   useEffect(() => {
     const fetchPokemon = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/pokedex", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await axios.get(
+          "https://api-pokemon-8etb.onrender.com/api/pokedex",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setPokemon(res.data.pokemons);
       } catch (error) {
         console.log(error);
@@ -77,7 +83,7 @@ const BattleArena = () => {
           const checkIfPlayerSendPokemonsList = async () => {
             try {
               const res = await axios.get(
-                "http://localhost:3000/api/isPlayerSendListPokemons",
+                "https://api-pokemon-8etb.onrender.com/api/isPlayerSendListPokemons",
                 {
                   headers: {
                     Authorization: `Bearer ${token}`,
