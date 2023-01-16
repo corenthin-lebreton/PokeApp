@@ -35,7 +35,6 @@ const BattleArena = () => {
               }
             );
 
-            console.log(res.data);
             setMessage(res.data.message);
             setIdPokemon(res.data);
             if (res.data.message === "new player joined") {
@@ -138,11 +137,6 @@ const BattleArena = () => {
                   res.data.contentEnnemy
                 );
 
-                console.log(statsHost);
-                console.log(statsEnnemy);
-
-                console.log(idPokemonHost);
-                console.log(idPokemonEnnemy);
                 async function fight() {
                   let host = 0;
                   let ennemy = 0;
