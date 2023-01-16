@@ -236,19 +236,25 @@ const BattleArena = () => {
         <div className="little-middle-circle"></div>
         <div className="white-part"></div>
         <div className="red-part"></div>
-        <div className="pokemon-post-1">
-          {idPokemonHost[pokemonHostIndex] ? (
+        <div className="pokemon-post-1"></div>
+        <div className="pokemon-post-2"></div>
+      </div>
+
+      <div>
+        {idPokemonHost[pokemonHostIndex] ? (
             <img
+              className="pokemon-image-1-fight"
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${idPokemonHost[pokemonHostIndex]}.png`}></img>
           ) : null}
         </div>
-        <div className="pokemon-post-2">
-          {idPokemonEnnemy[pokemonEnnemyIndex] ? (
+
+        <div>
+        {idPokemonEnnemy[pokemonEnnemyIndex] ? (
             <img
+              className="pokemon-image-2-fight"
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${idPokemonEnnemy[pokemonEnnemyIndex]}.png`}></img>
           ) : null}
         </div>
-      </div>
 
       {isPlayerJoined ? (
         <ChoosePokemonToFight
