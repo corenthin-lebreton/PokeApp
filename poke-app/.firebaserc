@@ -1,7 +1,5 @@
 {
   "projects": {
-    "pokemon-ipssi": "pokemon-ipssi"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "pokemon-fight-51aed"
+  }
 }
