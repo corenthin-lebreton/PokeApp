@@ -33,7 +33,7 @@ const Register = () => {
       confirmPassword: confirmPassword,
     };
     axios
-      .post("https://api-pokemon-8etb.onrender.com/api/register", data)
+      .post("https://pokemon-api-6r9p.onrender.com/api/register", data)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         window.location.href = "/login";

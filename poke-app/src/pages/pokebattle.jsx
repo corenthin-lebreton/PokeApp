@@ -26,7 +26,7 @@ const Pokebattle = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        "https://api-pokemon-8etb.onrender.com/api/getRooms",
+        "https://pokemon-api-6r9p.onrender.com/api/getRooms",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ const Pokebattle = () => {
   const createRoomGame = async (name, password) => {
     if (isPrivate) {
       const res = await axios.post(
-        "https://api-pokemon-8etb.onrender.com/api/createRoom",
+        "https://pokemon-api-6r9p.onrender.com/api/createRoom",
         {
           roomName: name,
           isPrivate: isPrivate,
@@ -63,7 +63,7 @@ const Pokebattle = () => {
       setIsCreated(true);
     } else {
       const res = await axios.post(
-        "https://api-pokemon-8etb.onrender.com/api/createRoom",
+        "https://pokemon-api-6r9p.onrender.com/api/createRoom",
         {
           roomName: name,
           isPrivate: isPrivate,
@@ -108,7 +108,7 @@ const Pokebattle = () => {
     } else {
       try {
         const res = await axios.post(
-          "https://api-pokemon-8etb.onrender.com/api/joinRoom",
+          "https://pokemon-api-6r9p.onrender.com/api/joinRoom",
           {
             id: id,
             private: false,
@@ -147,7 +147,7 @@ const Pokebattle = () => {
       try {
         setModalPassword(false);
         const res = await axios.post(
-          "https://api-pokemon-8etb.onrender.com/api/joinRoom",
+          "https://pokemon-api-6r9p.onrender.com/api/joinRoom",
           {
             password: handlePassword,
             id: roomId,

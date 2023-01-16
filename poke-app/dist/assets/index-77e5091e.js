@@ -14348,7 +14348,7 @@ const Yl = "/assets/logo-5c77bbc7.png",
     f.exports.useEffect(() => {
       (async () => {
         const u = await G.get(
-          "https://api-pokemon-8etb.onrender.com/api/getUserName",
+          "https://pokemon-api-6r9p.onrender.com/api/getUserName",
           {
             headers: { Authorization: `Bearer ${i}` },
           }
@@ -14503,7 +14503,7 @@ const Vw = () => {
     },
     a = () => {
       const u = { username: e, password: n };
-      G.post("https://api-pokemon-8etb.onrender.com/api/login", u)
+      G.post("https://pokemon-api-6r9p.onrender.com/api/login", u)
         .then((c) => {
           localStorage.setItem("token", c.data.token),
             (window.location.href = "/home");
@@ -14574,7 +14574,7 @@ const Qw = () => {
     },
     d = () => {
       const h = { username: e, password: n, confirmPassword: o };
-      G.post("https://api-pokemon-8etb.onrender.com/api/register", h)
+      G.post("https://pokemon-api-6r9p.onrender.com/api/register", h)
         .then((y) => {
           localStorage.setItem("token", y.data.token),
             (window.location.href = "/login");
@@ -14892,7 +14892,7 @@ const Xw = (e) =>
         u !== 0 && c(u - 1);
       };
     f.exports.useEffect(() => {
-      G.get("https://api-pokemon-8etb.onrender.com/api/pokedex", {
+      G.get("https://pokemon-api-6r9p.onrender.com/api/pokedex", {
         headers: { Authorization: `Bearer ${n}` },
       })
         .then((O) => {
@@ -14938,7 +14938,7 @@ const Xw = (e) =>
           : v("Ce pokemon n'est pas dans votre Pokedex");
       },
       Y = async () => {
-        await G.get("https://api-pokemon-8etb.onrender.com/api/getCoin", {
+        await G.get("https://pokemon-api-6r9p.onrender.com/api/getCoin", {
           headers: { Authorization: `Bearer ${n}` },
         })
           .then((O) => {
@@ -14960,18 +14960,18 @@ const Xw = (e) =>
         })();
       }, []);
     const ie = async () => {
-      await G.get("https://api-pokemon-8etb.onrender.com/api/pokedextoadd", {
+      await G.get("https://pokemon-api-6r9p.onrender.com/api/pokedextoadd", {
         "Content-Type": "application/json",
         headers: { Authorization: `Bearer ${n}` },
       }).then((O) => {
         O.data === null
           ? G.post(
-              "https://api-pokemon-8etb.onrender.com/api/create",
+              "https://pokemon-api-6r9p.onrender.com/api/create",
               {},
               { headers: { Authorization: `Bearer ${n}` } }
             ).then((F) => {
               G.patch(
-                "https://api-pokemon-8etb.onrender.com/api/addPokemon",
+                "https://pokemon-api-6r9p.onrender.com/api/addPokemon",
                 { id: l == null ? void 0 : l.id },
                 {
                   "Content-Type": "application/json",
@@ -14984,7 +14984,7 @@ const Xw = (e) =>
                 });
             })
           : G.patch(
-              "https://api-pokemon-8etb.onrender.com/api/addPokemon",
+              "https://pokemon-api-6r9p.onrender.com/api/addPokemon",
               { id: l == null ? void 0 : l.id },
               {
                 "Content-Type": "application/json",
@@ -15041,7 +15041,7 @@ const Xw = (e) =>
                       a((W) => [...W, B.data.id]),
                       _(x - 1),
                       await G.patch(
-                        "https://api-pokemon-8etb.onrender.com/api/reduceCoin",
+                        "https://pokemon-api-6r9p.onrender.com/api/reduceCoin",
                         {},
                         { headers: { Authorization: `Bearer ${n}` } }
                       );
@@ -15067,7 +15067,7 @@ const bw = () => {
   f.exports.useEffect(() => {
     (async () => {
       const l = await G.get(
-        "https://api-pokemon-8etb.onrender.com/api/getUserName",
+        "https://pokemon-api-6r9p.onrender.com/api/getUserName",
         {
           headers: { Authorization: `Bearer ${n}` },
         }
@@ -15289,7 +15289,7 @@ const nx = (e) => {
           (async () => {
             try {
               await G.post(
-                "https://api-pokemon-8etb.onrender.com/api/addPokemonForFight",
+                "https://pokemon-api-6r9p.onrender.com/api/addPokemonForFight",
                 { pokemonsForFight: r },
                 { headers: { Authorization: `Bearer ${d}` } }
               );
@@ -15387,7 +15387,7 @@ const nx = (e) => {
               await new Promise((C) => setTimeout(C, 2e3)),
                 !(await (async () => {
                   const C = await G.get(
-                    "https://api-pokemon-8etb.onrender.com/api/isWaiting",
+                    "https://pokemon-api-6r9p.onrender.com/api/isWaiting",
                     {
                       headers: { Authorization: `Bearer ${e}` },
                     }
@@ -15411,7 +15411,7 @@ const nx = (e) => {
         (async () => {
           try {
             const N = await G.get(
-              "https://api-pokemon-8etb.onrender.com/api/pokedex",
+              "https://pokemon-api-6r9p.onrender.com/api/pokedex",
               {
                 headers: { Authorization: `Bearer ${e}` },
               }
@@ -15432,7 +15432,7 @@ const nx = (e) => {
                   !(await (async () => {
                     try {
                       const C = await G.get(
-                        "https://api-pokemon-8etb.onrender.com/api/isPlayerSendListPokemons",
+                        "https://pokemon-api-6r9p.onrender.com/api/isPlayerSendListPokemons",
                         { headers: { Authorization: `Bearer ${e}` } }
                       );
                       if (
@@ -15648,7 +15648,7 @@ const nx = (e) => {
       f.exports.useEffect(() => {
         (async () => {
           const j = await G.get(
-            "https://api-pokemon-8etb.onrender.com/api/getRooms",
+            "https://pokemon-api-6r9p.onrender.com/api/getRooms",
             {
               headers: { Authorization: `Bearer ${i}` },
             }
@@ -15677,7 +15677,7 @@ const nx = (e) => {
                       else
                         try {
                           (await G.post(
-                            "https://api-pokemon-8etb.onrender.com/api/joinRoom",
+                            "https://pokemon-api-6r9p.onrender.com/api/joinRoom",
                             { id: V, private: !1 },
                             { headers: { Authorization: `Bearer ${i}` } }
                           )) && R(!0);
@@ -15699,14 +15699,14 @@ const nx = (e) => {
             createroom: async (V, j) => {
               if (o) {
                 const Q = await G.post(
-                  "https://api-pokemon-8etb.onrender.com/api/createRoom",
+                  "https://pokemon-api-6r9p.onrender.com/api/createRoom",
                   { roomName: V, isPrivate: o, password: j },
                   { headers: { Authorization: `Bearer ${i}` } }
                 );
                 a(Q), r(!1), c(!0);
               } else {
                 const Q = await G.post(
-                  "https://api-pokemon-8etb.onrender.com/api/createRoom",
+                  "https://pokemon-api-6r9p.onrender.com/api/createRoom",
                   { roomName: V, isPrivate: o },
                   { headers: { Authorization: `Bearer ${i}` } }
                 );
@@ -15728,7 +15728,7 @@ const nx = (e) => {
                     try {
                       _(!1);
                       const V = await G.post(
-                        "https://api-pokemon-8etb.onrender.com/api/joinRoom",
+                        "https://pokemon-api-6r9p.onrender.com/api/joinRoom",
                         { password: y, id: w, private: !0 },
                         { headers: { Authorization: `Bearer ${i}` } }
                       );

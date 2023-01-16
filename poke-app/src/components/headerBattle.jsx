@@ -15,7 +15,7 @@ const HeaderBattle = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        "https://api-pokemon-8etb.onrender.com/api/getUserName",
+        "https://pokemon-api-6r9p.onrender.com/api/getUserName",
         {
           headers: {
             Authorization: `Bearer ${token}`,

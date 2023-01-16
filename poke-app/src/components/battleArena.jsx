@@ -27,7 +27,7 @@ const BattleArena = () => {
           await new Promise((resolve) => setTimeout(resolve, 2000));
           const checkIfNewPlayerJoined = async () => {
             const res = await axios.get(
-              "https://api-pokemon-8etb.onrender.com/api/isWaiting",
+              "https://pokemon-api-6r9p.onrender.com/api/isWaiting",
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ const BattleArena = () => {
     const fetchPokemon = async () => {
       try {
         const res = await axios.get(
-          "https://api-pokemon-8etb.onrender.com/api/pokedex",
+          "https://pokemon-api-6r9p.onrender.com/api/pokedex",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -83,7 +83,7 @@ const BattleArena = () => {
           const checkIfPlayerSendPokemonsList = async () => {
             try {
               const res = await axios.get(
-                "https://api-pokemon-8etb.onrender.com/api/isPlayerSendListPokemons",
+                "https://pokemon-api-6r9p.onrender.com/api/isPlayerSendListPokemons",
                 {
                   headers: {
                     Authorization: `Bearer ${token}`,

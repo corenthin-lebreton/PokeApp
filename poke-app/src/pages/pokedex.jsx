@@ -43,7 +43,7 @@ const Pokedex = () => {
   //----------------------------Verify if a pokedex already exists------------------------
   useEffect(() => {
     axios
-      .get("https://api-pokemon-8etb.onrender.com/api/pokedex", {
+      .get("https://pokemon-api-6r9p.onrender.com/api/pokedex", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -123,7 +123,7 @@ const Pokedex = () => {
   //---------------------------------Get coin of user------------------------------------------------------------------
   const getCoin = async () => {
     await axios
-      .get("https://api-pokemon-8etb.onrender.com/api/getCoin", {
+      .get("https://pokemon-api-6r9p.onrender.com/api/getCoin", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -154,7 +154,7 @@ const Pokedex = () => {
   //------------------------Verify if pokedex exists create it or not and send pokemon to it---------------------------------------------------------------------------
   const sendPokemonToApi = async () => {
     await axios
-      .get("https://api-pokemon-8etb.onrender.com/api/pokedextoadd", {
+      .get("https://pokemon-api-6r9p.onrender.com/api/pokedextoadd", {
         "Content-Type": "application/json",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -164,7 +164,7 @@ const Pokedex = () => {
         if (res.data === null) {
           axios
             .post(
-              "https://api-pokemon-8etb.onrender.com/api/create",
+              "https://pokemon-api-6r9p.onrender.com/api/create",
               {},
               {
                 headers: {
@@ -175,7 +175,7 @@ const Pokedex = () => {
             .then((res) => {
               axios
                 .patch(
-                  "https://api-pokemon-8etb.onrender.com/api/addPokemon",
+                  "https://pokemon-api-6r9p.onrender.com/api/addPokemon",
                   {
                     id: pokemonInfo?.id,
                   },
@@ -195,7 +195,7 @@ const Pokedex = () => {
         } else {
           axios
             .patch(
-              "https://api-pokemon-8etb.onrender.com/api/addPokemon",
+              "https://pokemon-api-6r9p.onrender.com/api/addPokemon",
               { id: pokemonInfo?.id },
               {
                 "Content-Type": "application/json",
@@ -241,7 +241,7 @@ const Pokedex = () => {
 
       setCoin(coin - 1);
       await axios.patch(
-        "https://api-pokemon-8etb.onrender.com/api/reduceCoin",
+        "https://pokemon-api-6r9p.onrender.com/api/reduceCoin",
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

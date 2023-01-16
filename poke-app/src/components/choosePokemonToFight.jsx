@@ -56,7 +56,7 @@ const ChoosePokemonToFight = (props) => {
       const sendPokemonChose = async () => {
         try {
           await axios.post(
-            "https://api-pokemon-8etb.onrender.com/api/addPokemonForFight",
+            "https://pokemon-api-6r9p.onrender.com/api/addPokemonForFight",
             {
               pokemonsForFight: chosePokemon,
             },
