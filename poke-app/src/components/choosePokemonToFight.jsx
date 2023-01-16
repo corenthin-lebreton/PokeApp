@@ -13,8 +13,7 @@ const ChoosePokemonToFight = (props) => {
   useEffect(() => {
     const getPokemonInfo = async () => {
       try {
-        console.log(props.pokemon);
-        console.log(pokemonIndex);
+
         const res = await axios.get(
           `https://pokeapi.co/api/v2/pokemon/${props.pokemon[pokemonIndex]}`
         );
